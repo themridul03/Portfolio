@@ -219,13 +219,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Framer Motion** for React animations
 - **Tailwind CSS** for utility-first styling
 
-## 📞 Contact
 
-- **Portfolio**: [https://jayant-1.vercel.app/]
-- **GitHub**: [@Jayant-1](https://github.com/Jayant-1)
-- **LinkedIn**: [Jayant Potdar](https://www.linkedin.com/in/jayant-potdar-880a461b8/)
-- **Email**: jayantpotdar2006@gmail.com
-
----
 
 ⭐ **Star this repository if you found it helpful!**
