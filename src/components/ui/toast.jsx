@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import React, { useEffect } from "react";
 import {
   RiCloseLine,
@@ -34,8 +34,16 @@ const toastConfig = {
 const Toast = ({ message, type = "success", onClose }) => {
   const config = toastConfig[type] || toastConfig.success;
   const Icon = config.icon;
+  const controls = useAnimation();
 
   useEffect(() => {
+    controls.start({
+      rotateX: [90, -10, 0],
+      opacity: [0, 1],
+      scale: [0.9, 1],
+      transition: { duration: 0.45, ease: "easeOut" },
+    });
+
     const timer = setTimeout(() => {
       onClose();
     }, 4500);
@@ -46,17 +54,19 @@ const Toast = ({ message, type = "success", onClose }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, x: 80, scale: 0.92 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
+        initial={{ opacity: 0, x: 80, scale: 0.92, rotateY: 20 }}
+        animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
         exit={{ opacity: 0, x: 80, scale: 0.92 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
         className="fixed bottom-6 right-6 z-[99999] w-[calc(100%-32px)] max-w-[420px] overflow-hidden rounded-2xl border backdrop-blur-xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
         style={{
           background: "rgba(8,11,20,0.88)",
           borderColor: config.border,
+          transformStyle: "preserve-3d",
         }}
         role="alert"
       >
+        {/* glow layer */}
         <div
           className="absolute inset-0 opacity-70"
           style={{
@@ -65,17 +75,25 @@ const Toast = ({ message, type = "success", onClose }) => {
         />
 
         <div className="relative flex items-start gap-4 p-5">
-          <div
+          {/* ICON with pulse orbit */}
+          <motion.div
             className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border"
+            animate={{
+              boxShadow: [
+                `0 0 0px ${config.bg}`,
+                `0 0 25px ${config.bg}`,
+                `0 0 0px ${config.bg}`,
+              ],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
             style={{
               color: config.color,
               borderColor: config.border,
               background: config.bg,
-              boxShadow: `0 0 24px ${config.bg}`,
             }}
           >
             <Icon size={23} />
-          </div>
+          </motion.div>
 
           <div className="flex-1">
             <p
@@ -90,16 +108,33 @@ const Toast = ({ message, type = "success", onClose }) => {
             </p>
           </div>
 
-          <button
+          {/* 🔥 3D FLIP CLOSE BUTTON */}
+          <motion.button
             onClick={onClose}
             data-cursor="CLOSE"
-            className="cursor-can-hover flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/70 hover:border-[#c19d23]/50 hover:text-[#c19d23] transition"
+            className="cursor-can-hover flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/70 transition"
             aria-label="Close notification"
+            whileHover={{
+              rotateY: 180,
+              scale: 1.08,
+              borderColor: "#c19d23",
+              color: "#c19d23",
+            }}
+            whileTap={{ scale: 0.92 }}
+            style={{
+              transformStyle: "preserve-3d",
+            }}
           >
-            <RiCloseLine size={22} />
-          </button>
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            >
+              <RiCloseLine size={22} />
+            </motion.div>
+          </motion.button>
         </div>
 
+        {/* 🔥 animated progress bar with glow pulse */}
         <motion.div
           initial={{ width: "100%" }}
           animate={{ width: "0%" }}
@@ -107,6 +142,7 @@ const Toast = ({ message, type = "success", onClose }) => {
           className="relative h-[3px]"
           style={{
             background: `linear-gradient(90deg, ${config.color}, #f7df8a)`,
+            boxShadow: `0 0 18px ${config.color}`,
           }}
         />
       </motion.div>

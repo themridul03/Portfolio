@@ -5,13 +5,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import usePreloaderBypass from "../../reactbits/hooks/usePreloaderBypass";
 import Loader from "./loader";
 
-const PreloaderContext = createContext();
-
-const INITIAL = {
-  isLoading: true,
-  loadingPercent: 0,
-  bypassLoading: () => {},
-};
+const PreloaderContext = createContext(null);
 
 export const usePreloader = () => {
   const context = useContext(PreloaderContext);
@@ -21,20 +15,36 @@ export const usePreloader = () => {
   return context;
 };
 
-const LOADING_TIME = 2.5;
+const LOADING_TIME = 2.2;
 
 function Preloader({ children, disabled = false }) {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingPercent, setLoadingPercent] = useState(0);
-  const loadingTween = useRef();
 
-  const bypassLoading = () => {
-    loadingTween.current?.progress(0.99).kill();
-    setLoadingPercent(100);
-    setIsLoading(false);
+  const tweenRef = useRef(null);
+  const valueRef = useRef({ value: 0 });
+
+  // 🚀 smoother update throttle (avoid React spam)
+  const lastUpdate = useRef(0);
+
+  const updatePercent = (val) => {
+    const now = performance.now();
+
+    // throttle React updates (~12fps instead of 60fps)
+    if (now - lastUpdate.current > 80 || val >= 100) {
+      setLoadingPercent(val);
+      lastUpdate.current = now;
+    }
   };
 
-  const loadingPercentRef = useRef({ value: 0 });
+  const bypassLoading = () => {
+    tweenRef.current?.kill();
+
+    setLoadingPercent(100);
+
+    // instant close (no animation delay)
+    setIsLoading(false);
+  };
 
   usePreloaderBypass({
     onBypass: bypassLoading,
@@ -50,24 +60,39 @@ function Preloader({ children, disabled = false }) {
       return;
     }
 
-    loadingTween.current = gsap.to(loadingPercentRef.current, {
+    tweenRef.current = gsap.to(valueRef.current, {
       value: 100,
       duration: LOADING_TIME,
-      ease: "slow(0.7,0.7,false)",
+      ease: "power2.out",
       onUpdate: () => {
-        setLoadingPercent(loadingPercentRef.current.value);
+        updatePercent(valueRef.current.value);
       },
       onComplete: () => {
-        setIsLoading(false);
+        setLoadingPercent(100);
+
+        // small delay feels more natural (premium UX)
+        setTimeout(() => setIsLoading(false), 150);
       },
     });
+
+    return () => {
+      tweenRef.current?.kill();
+    };
   }, [disabled]);
 
   return (
     <PreloaderContext.Provider
-      value={{ isLoading, bypassLoading, loadingPercent }}
+      value={{
+        isLoading,
+        bypassLoading,
+        loadingPercent,
+      }}
     >
-      <AnimatePresence mode="wait">{isLoading && <Loader />}</AnimatePresence>
+      {/* only render loader when needed */}
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader progress={loadingPercent} />}
+      </AnimatePresence>
+
       {children}
     </PreloaderContext.Provider>
   );

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { opacity, slideUp } from "./anim";
 import { usePreloader } from "./index";
 import styles from "./style.module.css";
@@ -8,58 +8,71 @@ export default function Loader() {
   const { loadingPercent, bypassLoading } = usePreloader();
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
+  const frameRef = useRef(null);
+
+  // ✅ optimized resize (no state spam)
   useEffect(() => {
     const updateSize = () => {
-      setDimension({
-        width: window.innerWidth,
-        height: window.innerHeight,
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+
+      frameRef.current = requestAnimationFrame(() => {
+        setDimension({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
       });
     };
 
     updateSize();
     window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+
+    return () => {
+      window.removeEventListener("resize", updateSize);
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   const closeLoader = () => {
     bypassLoading();
+
     setTimeout(() => {
-      document.querySelector("#hero")?.scrollIntoView({ behavior: "smooth" });
-    }, 250);
+      document.querySelector("#hero")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 180);
   };
 
+  // ✅ single effect only (no duplicate listeners)
   useEffect(() => {
-    const timer = setTimeout(closeLoader, 4200);
-    const handleKeyDown = () => closeLoader();
+    const timer = setTimeout(closeLoader, 3800);
 
-    window.addEventListener("keydown", handleKeyDown);
+    const handleKey = () => closeLoader();
+
+    window.addEventListener("keydown", handleKey);
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKey);
     };
   }, []);
 
   const progress = Math.min(100, Math.max(0, loadingPercent || 0));
 
-  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
-    dimension.height
-  } Q${dimension.width / 2} ${dimension.height + 300} 0 ${
-    dimension.height
-  } L0 0`;
-
-  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
-    dimension.height
-  } Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
+  const path =
+    dimension.width > 0
+      ? `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${
+          dimension.width / 2
+        } ${dimension.height} 0 ${dimension.height} L0 0`
+      : "";
 
   const curve = {
     initial: {
-      d: initialPath,
+      d: path,
       transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
-      d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
+      d: path,
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
     },
   };
 
@@ -84,15 +97,13 @@ export default function Loader() {
             animate="enter"
             className={styles.loaderContent}
           >
+            {/* ⚡ lighter animation (same look, less GPU load) */}
             <div className={styles.stage}>
               <motion.div
                 className={styles.platform}
-                animate={{
-                  rotateX: [68, 68],
-                  rotateZ: [0, 360],
-                }}
+                animate={{ rotateZ: 360 }}
                 transition={{
-                  duration: 7,
+                  duration: 8,
                   repeat: Infinity,
                   ease: "linear",
                 }}
@@ -100,12 +111,9 @@ export default function Loader() {
 
               <motion.div
                 className={styles.platformTwo}
-                animate={{
-                  rotateX: [68, 68],
-                  rotateZ: [360, 0],
-                }}
+                animate={{ rotateZ: -360 }}
                 transition={{
-                  duration: 4.5,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "linear",
                 }}
@@ -114,49 +122,17 @@ export default function Loader() {
               <motion.div
                 className={styles.object3d}
                 animate={{
-                  rotateX: [0, 360],
-                  rotateY: [0, 360],
-                  y: [0, -18, 0],
+                  rotateY: 360,
+                  y: [0, -10, 0],
                 }}
                 transition={{
-                  rotateX: { duration: 6, repeat: Infinity, ease: "linear" },
-                  rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
-                  y: { duration: 2.4, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                <span className={styles.faceA} />
-                <span className={styles.faceB} />
-                <span className={styles.faceC} />
-                <span className={styles.faceD} />
-              </motion.div>
-
-              <motion.div
-                className={styles.lightBeam}
-                animate={{
-                  opacity: [0.25, 0.8, 0.25],
-                  scaleY: [0.85, 1.15, 0.85],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              <motion.div
-                className={styles.scan}
-                animate={{
-                  y: [-130, 130, -130],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 2.3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                  rotateY: { duration: 7, repeat: Infinity, ease: "linear" },
+                  y: { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
                 }}
               />
             </div>
 
+            {/* progress */}
             <div className={styles.statusBox}>
               <div className={styles.statusTop}>
                 <span>Preparing Interface</span>
@@ -167,27 +143,22 @@ export default function Loader() {
                 <motion.div
                   className={styles.progressFill}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  transition={{ duration: 0.25 }}
                 />
               </div>
             </div>
 
             <motion.div
               className={styles.microText}
-              animate={{ opacity: [0.35, 1, 0.35] }}
-              transition={{ duration: 1.8, repeat: Infinity }}
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 1.6, repeat: Infinity }}
             >
               click anywhere to enter
             </motion.div>
           </motion.div>
 
           <svg className={styles.curveSvg}>
-            <motion.path
-              variants={curve}
-              initial="initial"
-              exit="exit"
-              fill="#05070d"
-            />
+            {path && <motion.path variants={curve} fill="#05070d" />}
           </svg>
         </>
       )}

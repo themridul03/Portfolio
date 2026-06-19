@@ -1,6 +1,10 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { RiExternalLinkLine, RiMedalFill, RiSparkling2Fill } from "react-icons/ri";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import {
+  RiExternalLinkLine,
+  RiMedalFill,
+  RiSparkling2Fill,
+} from "react-icons/ri";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -13,36 +17,59 @@ import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const AchievementCard = ({ Achievement, index }) => {
+/* =========================
+   SINGLE CARD (APPLE STYLE)
+========================= */
+const AchievementCard = ({ Achievement, index, scrollYProgress }) => {
+  // Apple-like focus animation
+  const opacity = useTransform(
+    scrollYProgress,
+    [index * 0.2, index * 0.2 + 0.15],
+    [0.2, 1]
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [index * 0.2, index * 0.2 + 0.15],
+    [0.92, 1]
+  );
+
+  const y = useTransform(
+    scrollYProgress,
+    [index * 0.2, index * 0.2 + 0.15],
+    [60, 0]
+  );
+
   return (
     <VerticalTimelineElement
       contentStyle={{
         background: "rgba(8, 11, 20, 0.92)",
         color: "#fff",
-        border: "1px solid rgba(255,255,255,0.10)",
+        border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: "24px",
-        boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
         backdropFilter: "blur(18px)",
+        transform: "none",
+        boxShadow: "none", // ❌ removed heavy shadow
       }}
       contentArrowStyle={{
-        borderRight: "7px solid rgba(193,157,35,0.75)",
+        borderRight: "7px solid rgba(193,157,35,0.6)",
       }}
       date={Achievement.date}
       dateClassName="text-[#c19d23] font-semibold"
       iconStyle={{
         background: `linear-gradient(135deg, ${Achievement.iconBg}, #080b14)`,
-        boxShadow: "0 0 28px rgba(193,157,35,0.35)",
-        border: "2px solid rgba(255,255,255,0.18)",
+        border: "1px solid rgba(255,255,255,0.12)",
       }}
       icon={
         <motion.div
           className="flex justify-center items-center w-full h-full"
-          animate={{ rotate: [0, 4, -4, 0], scale: [1, 1.06, 1] }}
+          animate={{
+            rotateY: [0, 360],
+          }}
           transition={{
-            duration: 3,
+            duration: 8,
             repeat: Infinity,
-            delay: index * 0.2,
-            ease: "easeInOut",
+            ease: "linear",
           }}
         >
           <img
@@ -54,16 +81,17 @@ const AchievementCard = ({ Achievement, index }) => {
       }
     >
       <motion.div
-        variants={fadeIn("up", "spring", index * 0.15, 0.75)}
-        className="relative overflow-hidden"
+        style={{ opacity, scale, y }}
+        className="relative overflow-hidden will-change-transform"
       >
+        {/* glow only (light) */}
         <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#c19d23]/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl" />
 
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-[13px] font-semibold mb-4">
             <RiMedalFill />
-            Achievement Milestone
+            Achievement
           </div>
 
           <h3 className="text-white text-[24px] sm:text-[28px] font-black leading-tight">
@@ -90,32 +118,18 @@ const AchievementCard = ({ Achievement, index }) => {
           <ul className="mt-6 space-y-4">
             {Achievement.points.map((point, pointIndex) => (
               <motion.li
-                key={`Achievement-point-${pointIndex}`}
-                initial={{ opacity: 0, x: -18 }}
+                key={pointIndex}
+                initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.45,
-                  delay: pointIndex * 0.12,
+                  duration: 0.4,
+                  delay: pointIndex * 0.1,
                 }}
                 viewport={{ once: true }}
-                className="relative pl-7 text-white/85 text-[14px] sm:text-[15px] leading-7 tracking-wide"
+                className="relative pl-7 text-white/80 text-[14px]"
               >
-                <span className="absolute left-0 top-[10px] w-2 h-2 rounded-full bg-[#c19d23] shadow-[0_0_14px_rgba(193,157,35,0.9)]" />
+                <span className="absolute left-0 top-[10px] w-2 h-2 rounded-full bg-[#c19d23]" />
                 {point}
-
-                {Achievement.credential && Achievement.credential[pointIndex] && (
-                  <div className="mt-3">
-                    <a
-                      href={Achievement.credential[pointIndex]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c19d23]/10 border border-[#c19d23]/30 text-[#f7df8a] text-[13px] font-semibold hover:bg-[#c19d23]/20 hover:border-[#c19d23]/70 transition-all duration-300"
-                    >
-                      View Credential
-                      <RiExternalLinkLine />
-                    </a>
-                  </div>
-                )}
               </motion.li>
             ))}
           </ul>
@@ -125,11 +139,22 @@ const AchievementCard = ({ Achievement, index }) => {
   );
 };
 
+/* =========================
+   MAIN SECTION (APPLE SCROLL CONTROL)
+========================= */
 const Achievement = () => {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
   return (
-    <>
-      <motion.div variants={textVariant()} className="relative text-center">
-        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-sm font-semibold mb-4">
+    <div ref={containerRef} className="relative">
+      {/* HEADER */}
+      <motion.div variants={textVariant()} className="text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-sm font-semibold mb-4">
           <RiSparkling2Fill />
           Career Highlights
         </div>
@@ -141,29 +166,26 @@ const Achievement = () => {
         <h2 className={`${styles.sectionHeadText} text-center`}>
           Achievements.
         </h2>
-
-        <p className="mt-4 text-secondary text-[16px] max-w-2xl mx-auto leading-7">
-          A timeline of certifications, milestones, learning progress and
-          professional achievements that reflect my growth as a developer.
-        </p>
       </motion.div>
 
+      {/* TIMELINE */}
       <div className="relative mt-20">
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-[#c19d23]/40 to-transparent hidden md:block" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1px] h-full bg-[#c19d23]/30 hidden md:block" />
 
-        <VerticalTimeline lineColor="rgba(193,157,35,0.35)">
+        <VerticalTimeline lineColor="rgba(193,157,35,0.25)">
           {achievements.map((achievement, index) => (
             <AchievementCard
-              key={`Achievement-${index}`}
+              key={index}
               Achievement={achievement}
               index={index}
+              scrollYProgress={scrollYProgress}
             />
           ))}
         </VerticalTimeline>
       </div>
 
-      <span id="skills"></span>
-    </>
+      <span id="skills" />
+    </div>
   );
 };
 
