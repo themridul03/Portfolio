@@ -15,11 +15,12 @@ import useNavPeek from "../reactbits/hooks/useNavPeek";
 const NAV_LINKS = [
   { title: "home", href: "#hero", img: portfolio, count: "01" },
   { title: "about", href: "#about", img: about, count: "02" },
-  { title: "projects", href: "#projects", img: project, count: "03" },
-  { title: "achievements", href: "#achievements", img: achievements, count: "04" },
-  { title: "skills", href: "#skills", img: skills, count: "05" },
-  { title: "testimonials", href: "#testimonials", img: testimonials, count: "06" },
-  { title: "contact", href: "#contact", img: contact, count: "07" },
+  { title: "karto", href: "#karto-spotlight", img: project, count: "03" },
+  { title: "projects", href: "#projects", img: project, count: "04" },
+  { title: "experience", href: "#experience", img: achievements, count: "05" },
+  { title: "skills", href: "#skills", img: skills, count: "06" },
+  { title: "education", href: "#education", img: achievements, count: "07" },
+  { title: "contact", href: "#contact", img: contact, count: "08" },
 ];
 
 const opacity = {

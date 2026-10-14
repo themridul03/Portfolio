@@ -49,6 +49,18 @@ import project from "./nav-link-previews/projects.png";
 import skills from "./nav-link-previews/skills.png";
 import contact from "./nav-link-previews/contact.png";
 
+import karto from "./project/karto.svg";
+import natgashub from "./project/natgashub.svg";
+import labmate from "./project/labmate.svg";
+import homescape from "./project/homescape.svg";
+import bytecraft from "./project/bytecraft.svg";
+import mimihotels from "./project/mimihotels.svg";
+import greencross from "./project/greencross.svg";
+import prachini from "./project/prachini.svg";
+import mridul from "@profile";
+import developer3d from "@developer3d";
+import karto3d from "@karto3d";
+
 import code from "./badge/code.svg";
 import concepts from "./badge/concepts.svg";
 import designs from "./badge/designs.svg";
@@ -96,6 +108,17 @@ export {
   krypton4,
   krypton5,
   krypton6,
+  karto,
+  natgashub,
+  labmate,
+  homescape,
+  bytecraft,
+  mimihotels,
+  greencross,
+  prachini,
+  mridul,
+  developer3d,
+  karto3d,
   neuralnet,
   neuralnet1,
   neuralnet2,

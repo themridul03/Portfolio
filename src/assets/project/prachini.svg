@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bgGrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#191008"/>
+      <stop offset="50%" stop-color="#0e0804"/>
+      <stop offset="100%" stop-color="#050301"/>
+    </linearGradient>
+    <filter id="glow8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgGrad8)"/>
+  <circle cx="280" cy="220" r="220" fill="#d97706" opacity="0.16" filter="url(#glow8)"/>
+  <circle cx="950" cy="500" r="250" fill="#f59e0b" opacity="0.12" filter="url(#glow8)"/>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 100)">
+    <rect width="210" height="38" rx="19" fill="#d97706" fill-opacity="0.15" stroke="#d97706" stroke-opacity="0.5"/>
+    <circle cx="22" cy="19" r="6" fill="#d97706"/>
+    <text x="38" y="24" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">E-COMMERCE CAFE</text>
+
+    <text x="0" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="42" font-weight="900" letter-spacing="-1">Prachini Coffee Shop</text>
+    <text x="0" y="130" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="19" font-weight="500">Artisan Coffee Roastery &amp; Modern Online Ordering Platform</text>
+
+    <g transform="translate(0, 175)">
+      <rect width="150" height="75" rx="16" fill="#29180b" stroke="#78350f"/>
+      <text x="20" y="36" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Arabica</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Single-Origin Roasts</text>
+    </g>
+
+    <g transform="translate(170, 175)">
+      <rect width="150" height="75" rx="16" fill="#29180b" stroke="#78350f"/>
+      <text x="20" y="36" fill="#f97316" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Dynamic</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Cart &amp; Custom Brews</text>
+    </g>
+
+    <g transform="translate(340, 175)">
+      <rect width="150" height="75" rx="16" fill="#29180b" stroke="#78350f"/>
+      <text x="20" y="36" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="24" font-weight="800">TypeScript</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">React &amp; Tailwind</text>
+    </g>
+
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="105" height="32" rx="16" fill="#451a03" stroke="#b45309"/>
+      <text x="14" y="21" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13" font-weight="600">TypeScript</text>
+
+      <rect x="115" y="0" width="85" height="32" rx="16" fill="#451a03" stroke="#b45309"/>
+      <text x="127" y="21" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13" font-weight="600">React.js</text>
+
+      <rect x="210" y="0" width="105" height="32" rx="16" fill="#451a03" stroke="#b45309"/>
+      <text x="222" y="21" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tailwind CSS</text>
+
+      <rect x="325" y="0" width="105" height="32" rx="16" fill="#451a03" stroke="#b45309"/>
+      <text x="338" y="21" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13" font-weight="600">E-Commerce</text>
+    </g>
+  </g>
+
+  <!-- Right: Cafe UI Mockup -->
+  <g transform="translate(620, 90)">
+    <rect width="520" height="570" rx="20" fill="#140a04" stroke="#78350f" stroke-width="2"/>
+    <rect width="520" height="46" rx="20" fill="#29180b"/>
+    <circle cx="28" cy="23" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="23" r="6" fill="#eab308"/>
+    <circle cx="68" cy="23" r="6" fill="#22c55e"/>
+    <text x="100" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Prachini Coffee Roastery • Menu &amp; Cart</text>
+
+    <!-- Coffee Card 1 -->
+    <g transform="translate(24, 65)">
+      <rect width="225" height="250" rx="16" fill="#201107" stroke="#78350f"/>
+      <rect x="20" y="20" width="185" height="120" rx="12" fill="#451a03"/>
+      <!-- Steaming Coffee Cup -->
+      <path d="M 90 90 Q 90 120 115 120 Q 140 120 140 90 Z" fill="#d97706"/>
+      <path d="M 140 95 Q 155 95 155 105 Q 155 115 140 115" stroke="#d97706" stroke-width="3" fill="none"/>
+      <!-- Steam -->
+      <path d="M 105 75 Q 100 65 105 55" stroke="#fef3c7" stroke-width="2" fill="none" opacity="0.6"/>
+      <path d="M 118 75 Q 123 65 118 55" stroke="#fef3c7" stroke-width="2" fill="none" opacity="0.6"/>
+
+      <text x="20" y="165" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Caramel Cortado</text>
+      <text x="20" y="182" fill="#d97706" font-family="system-ui, sans-serif" font-size="11">Ethiopian Yirgacheffe</text>
+
+      <text x="20" y="215" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="16" font-weight="800">₹249</text>
+      <rect x="135" y="195" width="70" height="32" rx="16" fill="#d97706"/>
+      <text x="148" y="216" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">+ Add</text>
+    </g>
+
+    <!-- Coffee Card 2 -->
+    <g transform="translate(269, 65)">
+      <rect width="225" height="250" rx="16" fill="#201107" stroke="#78350f"/>
+      <rect x="20" y="20" width="185" height="120" rx="12" fill="#451a03"/>
+      <!-- Cold Brew Jar -->
+      <rect x="95" y="75" width="35" height="50" rx="4" fill="#92400e"/>
+      <line x1="112" y1="55" x2="112" y2="75" stroke="#fef3c7" stroke-width="3"/>
+      <circle cx="105" cy="95" r="4" fill="#fbbf24" opacity="0.5"/>
+      <circle cx="118" cy="105" r="3" fill="#fbbf24" opacity="0.5"/>
+
+      <text x="20" y="165" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Nitro Cold Brew</text>
+      <text x="20" y="182" fill="#d97706" font-family="system-ui, sans-serif" font-size="11">Steeped 18hrs • Velvety</text>
+
+      <text x="20" y="215" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="16" font-weight="800">₹299</text>
+      <rect x="135" y="195" width="70" height="32" rx="16" fill="#d97706"/>
+      <text x="148" y="216" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">+ Add</text>
+    </g>
+
+    <!-- Cart Summary -->
+    <g transform="translate(24, 335)">
+      <rect width="470" height="205" rx="16" fill="#1f1107" stroke="#78350f"/>
+      <text x="20" y="32" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Fresh Brew Order Cart</text>
+
+      <line x1="20" y1="48" x2="450" y2="48" stroke="#78350f"/>
+      <text x="25" y="75" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13">1x Caramel Cortado (Oat Milk)</text>
+      <text x="400" y="75" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="700">₹249</text>
+
+      <line x1="20" y1="95" x2="450" y2="95" stroke="#78350f"/>
+      <text x="25" y="122" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="13">1x Nitro Cold Brew (Classic)</text>
+      <text x="400" y="122" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="700">₹299</text>
+
+      <rect x="20" y="145" width="430" height="46" rx="23" fill="linear-gradient(90deg, #d97706, #f59e0b)"/>
+      <text x="165" y="173" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="800">Proceed to Checkout • ₹548</text>
+    </g>
+  </g>
+</svg>

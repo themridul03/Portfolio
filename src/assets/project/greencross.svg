@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bgGrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041a14"/>
+      <stop offset="50%" stop-color="#020e0b"/>
+      <stop offset="100%" stop-color="#010504"/>
+    </linearGradient>
+    <filter id="glow7" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgGrad7)"/>
+  <circle cx="280" cy="220" r="220" fill="#10b981" opacity="0.16" filter="url(#glow7)"/>
+  <circle cx="950" cy="500" r="250" fill="#06b6d4" opacity="0.12" filter="url(#glow7)"/>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 100)">
+    <rect width="210" height="38" rx="19" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-opacity="0.5"/>
+    <circle cx="22" cy="19" r="6" fill="#10b981"/>
+    <text x="38" y="24" fill="#34d399" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">HEALTHCARE WEB</text>
+
+    <text x="0" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="42" font-weight="900" letter-spacing="-1">Green Cross Hospital</text>
+    <text x="0" y="130" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="19" font-weight="500">Modern Hospital Management, Doctor Booking &amp; OPD Portal</text>
+
+    <g transform="translate(0, 175)">
+      <rect width="150" height="75" rx="16" fill="#062920" stroke="#065f46"/>
+      <text x="20" y="36" fill="#34d399" font-family="system-ui, sans-serif" font-size="24" font-weight="800">24 / 7</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Emergency Care</text>
+    </g>
+
+    <g transform="translate(170, 175)">
+      <rect width="150" height="75" rx="16" fill="#062920" stroke="#065f46"/>
+      <text x="20" y="36" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="24" font-weight="800">1-Click</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Doctor Scheduling</text>
+    </g>
+
+    <g transform="translate(340, 175)">
+      <rect width="150" height="75" rx="16" fill="#062920" stroke="#065f46"/>
+      <text x="20" y="36" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Secure</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Patient Records</text>
+    </g>
+
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="105" height="32" rx="16" fill="#022c22" stroke="#047857"/>
+      <text x="14" y="21" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">JavaScript</text>
+
+      <rect x="115" y="0" width="85" height="32" rx="16" fill="#022c22" stroke="#047857"/>
+      <text x="127" y="21" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">React.js</text>
+
+      <rect x="210" y="0" width="105" height="32" rx="16" fill="#022c22" stroke="#047857"/>
+      <text x="222" y="21" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tailwind CSS</text>
+
+      <rect x="325" y="0" width="105" height="32" rx="16" fill="#022c22" stroke="#047857"/>
+      <text x="338" y="21" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">OPD Portal</text>
+    </g>
+  </g>
+
+  <!-- Right: Hospital UI Mockup -->
+  <g transform="translate(620, 90)">
+    <rect width="520" height="570" rx="20" fill="#031b14" stroke="#065f46" stroke-width="2"/>
+    <rect width="520" height="46" rx="20" fill="#042f24"/>
+    <circle cx="28" cy="23" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="23" r="6" fill="#eab308"/>
+    <circle cx="68" cy="23" r="6" fill="#22c55e"/>
+    <text x="100" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Green Cross Hospital Portal • Patient Services</text>
+
+    <!-- Hospital Hero Banner in Mockup -->
+    <g transform="translate(24, 65)">
+      <rect width="470" height="230" rx="16" fill="#052e23" stroke="#047857"/>
+      
+      <!-- Hospital Cross icon -->
+      <g transform="translate(45, 45)">
+        <circle cx="35" cy="35" r="35" fill="#10b981" opacity="0.2"/>
+        <rect x="27" y="15" width="16" height="40" rx="4" fill="#34d399"/>
+        <rect x="15" y="27" width="40" height="16" rx="4" fill="#34d399"/>
+      </g>
+
+      <text x="135" y="65" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="800">Compassionate Healthcare</text>
+      <text x="135" y="90" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="13">Specialized Cardiology, Orthopedics, Neurology &amp; Pediatrics</text>
+
+      <!-- Search Doctor Bar -->
+      <g transform="translate(30, 130)">
+        <rect width="410" height="50" rx="25" fill="#021c15" stroke="#065f46"/>
+        <text x="25" y="30" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="13">🔍 Find doctor, specialty or department...</text>
+        <rect x="300" y="7" width="100" height="36" rx="18" fill="#10b981"/>
+        <text x="325" y="30" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Search</text>
+      </g>
+    </g>
+
+    <!-- Doctors Cards in UI -->
+    <g transform="translate(24, 315)">
+      <rect width="225" height="225" rx="16" fill="#04261d" stroke="#065f46"/>
+      <circle cx="45" cy="45" r="25" fill="#10b981" opacity="0.3"/>
+      <text x="35" y="52" font-size="18">👨‍⚕️</text>
+      <text x="80" y="42" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Dr. Rajesh V.</text>
+      <text x="80" y="58" fill="#34d399" font-family="system-ui, sans-serif" font-size="11">Cardiologist (15 yrs)</text>
+
+      <rect x="20" y="90" width="185" height="1" fill="#065f46"/>
+      <text x="20" y="120" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Next Available Slot:</text>
+      <text x="20" y="140" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Today, 4:30 PM</text>
+
+      <rect x="20" y="165" width="185" height="38" rx="19" fill="#10b981"/>
+      <text x="65" y="189" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Book OPD</text>
+    </g>
+
+    <g transform="translate(269, 315)">
+      <rect width="225" height="225" rx="16" fill="#04261d" stroke="#065f46"/>
+      <circle cx="45" cy="45" r="25" fill="#06b6d4" opacity="0.3"/>
+      <text x="35" y="52" font-size="18">👩‍⚕️</text>
+      <text x="80" y="42" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Dr. Ananya S.</text>
+      <text x="80" y="58" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11">Neurologist (12 yrs)</text>
+
+      <rect x="20" y="90" width="185" height="1" fill="#065f46"/>
+      <text x="20" y="120" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Next Available Slot:</text>
+      <text x="20" y="140" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Tomorrow, 11:00 AM</text>
+
+      <rect x="20" y="165" width="185" height="38" rx="19" fill="#0891b2"/>
+      <text x="65" y="189" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Book OPD</text>
+    </g>
+  </g>
+</svg>

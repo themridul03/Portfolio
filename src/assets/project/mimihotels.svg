@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bgGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140f1a"/>
+      <stop offset="50%" stop-color="#0b080f"/>
+      <stop offset="100%" stop-color="#040305"/>
+    </linearGradient>
+    <filter id="glow6" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgGrad6)"/>
+  <circle cx="280" cy="220" r="220" fill="#e11d48" opacity="0.14" filter="url(#glow6)"/>
+  <circle cx="950" cy="500" r="250" fill="#f59e0b" opacity="0.12" filter="url(#glow6)"/>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 100)">
+    <rect width="210" height="38" rx="19" fill="#e11d48" fill-opacity="0.15" stroke="#f43f5e" stroke-opacity="0.5"/>
+    <circle cx="22" cy="19" r="6" fill="#f43f5e"/>
+    <text x="38" y="24" fill="#fb7185" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">HOSPITALITY &amp; API</text>
+
+    <text x="0" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">MIMI Hotels</text>
+    <text x="0" y="130" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="19" font-weight="500">Luxury Hotel Reservation Engine &amp; High-Speed REST API</text>
+
+    <g transform="translate(0, 175)">
+      <rect width="150" height="75" rx="16" fill="#20111a" stroke="#4c1d2e"/>
+      <text x="20" y="36" fill="#fb7185" font-family="system-ui, sans-serif" font-size="24" font-weight="800">5-Star</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Boutique Booking</text>
+    </g>
+
+    <g transform="translate(170, 175)">
+      <rect width="150" height="75" rx="16" fill="#20111a" stroke="#4c1d2e"/>
+      <text x="20" y="36" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="24" font-weight="800">REST API</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">HotelAPi Engine</text>
+    </g>
+
+    <g transform="translate(340, 175)">
+      <rect width="150" height="75" rx="16" fill="#20111a" stroke="#4c1d2e"/>
+      <text x="20" y="36" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Real-Time</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Room Inventory</text>
+    </g>
+
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="105" height="32" rx="16" fill="#3f0f22" stroke="#be123c"/>
+      <text x="14" y="21" fill="#fecdd3" font-family="system-ui, sans-serif" font-size="13" font-weight="600">TypeScript</text>
+
+      <rect x="115" y="0" width="85" height="32" rx="16" fill="#3f0f22" stroke="#be123c"/>
+      <text x="127" y="21" fill="#fecdd3" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Node.js</text>
+
+      <rect x="210" y="0" width="95" height="32" rx="16" fill="#3f0f22" stroke="#be123c"/>
+      <text x="222" y="21" fill="#fecdd3" font-family="system-ui, sans-serif" font-size="13" font-weight="600">REST API</text>
+
+      <rect x="315" y="0" width="105" height="32" rx="16" fill="#3f0f22" stroke="#be123c"/>
+      <text x="328" y="21" fill="#fecdd3" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tailwind CSS</text>
+    </g>
+  </g>
+
+  <!-- Right: Hotel Booking UI Mockup -->
+  <g transform="translate(620, 90)">
+    <rect width="520" height="570" rx="20" fill="#130b13" stroke="#4c1d2e" stroke-width="2"/>
+    <rect width="520" height="46" rx="20" fill="#20111a"/>
+    <circle cx="28" cy="23" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="23" r="6" fill="#eab308"/>
+    <circle cx="68" cy="23" r="6" fill="#22c55e"/>
+    <text x="100" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">MIMI Luxury Resorts &amp; Hotels • Booking Engine</text>
+
+    <!-- Hotel Room Card -->
+    <g transform="translate(24, 65)">
+      <rect width="470" height="260" rx="16" fill="#1f111c" stroke="#881337"/>
+      <!-- Luxury Hotel Suite Illustration -->
+      <rect x="50" y="140" width="220" height="80" rx="10" fill="#be123c" opacity="0.4"/>
+      <rect x="60" y="110" width="80" height="40" rx="6" fill="#f43f5e" opacity="0.5"/>
+      <rect x="150" y="110" width="80" height="40" rx="6" fill="#f43f5e" opacity="0.5"/>
+      <!-- Window view / sunset -->
+      <rect x="290" y="50" width="140" height="130" rx="8" fill="#f59e0b" opacity="0.3"/>
+      <circle cx="360" cy="100" r="30" fill="#fbbf24" opacity="0.7"/>
+
+      <!-- Overlay details -->
+      <rect x="1" y="190" width="468" height="69" rx="16" fill="#0c060c" fill-opacity="0.9"/>
+      <text x="25" y="222" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="800">Presidential Ocean View Suite</text>
+      <text x="25" y="242" fill="#fb7185" font-family="system-ui, sans-serif" font-size="12">King Bed • Sea Balcony • Free High-Speed WiFi • Breakfast Included</text>
+    </g>
+
+    <!-- Booking selector -->
+    <g transform="translate(24, 345)">
+      <rect width="470" height="195" rx="16" fill="#180e18" stroke="#4c1d2e"/>
+      <text x="20" y="32" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Check Availability &amp; Instant Confirmation</text>
+
+      <g transform="translate(20, 50)">
+        <rect width="135" height="60" rx="12" fill="#241420"/>
+        <text x="15" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Check-in</text>
+        <text x="15" y="46" fill="#fb7185" font-family="system-ui, sans-serif" font-size="15" font-weight="800">18 Oct 2026</text>
+      </g>
+
+      <g transform="translate(170, 50)">
+        <rect width="135" height="60" rx="12" fill="#241420"/>
+        <text x="15" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Check-out</text>
+        <text x="15" y="46" fill="#fb7185" font-family="system-ui, sans-serif" font-size="15" font-weight="800">22 Oct 2026</text>
+      </g>
+
+      <g transform="translate(320, 50)">
+        <rect width="130" height="60" rx="12" fill="#241420"/>
+        <text x="15" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Guests</text>
+        <text x="15" y="46" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="15" font-weight="800">2 Adults, 1 Rm</text>
+      </g>
+
+      <rect x="20" y="130" width="430" height="46" rx="23" fill="linear-gradient(90deg, #e11d48, #f59e0b)"/>
+      <text x="165" y="158" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="800">Reserve Suite • ₹8,499 / night</text>
+    </g>
+  </g>
+</svg>

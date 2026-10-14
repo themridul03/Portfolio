@@ -28,22 +28,22 @@ const contactLinks = [
     href: "mailto:mradulm148@gmail.com",
   },
   {
-    title: "Location",
-    value: "India",
-    icon: RiMapPin2Fill,
-    href: "#",
+    title: "Phone & WhatsApp",
+    value: "+91-8418069880",
+    icon: RiWhatsappFill,
+    href: "https://wa.me/918418069880",
   },
   {
-    title: "LinkedIn",
-    value: "Connect with me",
-    icon: RiLinkedinBoxFill,
-    href: "https://www.linkedin.com/in/mahii7781",
+    title: "Location",
+    value: "Shahjahanpur, UP, 242221",
+    icon: RiMapPin2Fill,
+    href: "https://maps.google.com/?q=Shahjahanpur,Uttar+Pradesh",
   },
   {
     title: "GitHub",
-    value: "View projects",
+    value: "github.com/themridul03",
     icon: RiGithubFill,
-    href: "https://github.com/mahiiiii7781",
+    href: "https://github.com/themridul03",
   },
 ];
 

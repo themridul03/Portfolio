@@ -10,7 +10,10 @@ import ReactBitsCursorProvider from "./reactbits/context/ReactBitsCursorProvider
 
 // Lazy Loaded Components
 const About = lazy(() => import("./components/About"));
+const KartoSpotlight = lazy(() => import("./components/KartoSpotlight"));
 const Works = lazy(() => import("./components/Works"));
+const Experience = lazy(() => import("./components/Experience"));
+const Education = lazy(() => import("./components/Education"));
 const Achievement = lazy(() => import("./components/Achievement"));
 const Feedbacks = lazy(() => import("./components/Feedbacks"));
 const Contact = lazy(() => import("./components/Contact"));
@@ -44,24 +47,26 @@ const App = () => {
         <Preloader>
           <BrowserRouter>
             <div
-              className="relative z-0"
-              style={{ backgroundColor: "hsl(222.2 84% 4.9%)" }}
+              className="relative z-0 min-h-screen text-[#121418]"
+              style={{ backgroundColor: "#f4efe6" }}
             >
               <Suspense fallback={null}>
                 {isDesktop && <ElasticCursor />}
                 <EasterEggs />
               </Suspense>
 
-              <div className="bg-hero-pattern bg-cover bg-center bg-no-repeat">
+              <div>
                 <Navbar />
                 <Hero />
               </div>
 
               <Suspense fallback={null}>
                 <About />
+                <KartoSpotlight />
                 <Works />
-                <Achievement />
+                <Experience />
                 <SkillKeyboard />
+                <Education />
                 <Feedbacks />
 
                 {showStars && <StarsCanvas />}

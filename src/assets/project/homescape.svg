@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#110d24"/>
+      <stop offset="50%" stop-color="#090615"/>
+      <stop offset="100%" stop-color="#04020a"/>
+    </linearGradient>
+    <filter id="glow4" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgGrad4)"/>
+  <circle cx="280" cy="220" r="220" fill="#8b5cf6" opacity="0.16" filter="url(#glow4)"/>
+  <circle cx="950" cy="500" r="250" fill="#ec4899" opacity="0.12" filter="url(#glow4)"/>
+
+  <!-- Left: Content -->
+  <g transform="translate(80, 100)">
+    <rect width="200" height="38" rx="19" fill="#8b5cf6" fill-opacity="0.15" stroke="#a78bfa" stroke-opacity="0.5"/>
+    <circle cx="22" cy="19" r="6" fill="#a78bfa"/>
+    <text x="38" y="24" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">AI REAL ESTATE</text>
+
+    <text x="0" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">HomeScape</text>
+    <text x="0" y="130" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="19" font-weight="500">AI-Powered Next-Gen Real Estate Discovery Platform</text>
+
+    <g transform="translate(0, 175)">
+      <rect width="150" height="75" rx="16" fill="#1e153b" stroke="#3b2b68"/>
+      <text x="20" y="36" fill="#c084fc" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Smart Match</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">AI Property Valuation</text>
+    </g>
+
+    <g transform="translate(170, 175)">
+      <rect width="150" height="75" rx="16" fill="#1e153b" stroke="#3b2b68"/>
+      <text x="20" y="36" fill="#f472b6" font-family="system-ui, sans-serif" font-size="24" font-weight="800">3D Tours</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Interactive Spatial Walk</text>
+    </g>
+
+    <g transform="translate(340, 175)">
+      <rect width="150" height="75" rx="16" fill="#1e153b" stroke="#3b2b68"/>
+      <text x="20" y="36" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Next.js</text>
+      <text x="20" y="58" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">TypeScript &amp; Tailwind</text>
+    </g>
+
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="105" height="32" rx="16" fill="#2e1065" stroke="#7c3aed"/>
+      <text x="14" y="21" fill="#ddd6fe" font-family="system-ui, sans-serif" font-size="13" font-weight="600">TypeScript</text>
+
+      <rect x="115" y="0" width="85" height="32" rx="16" fill="#2e1065" stroke="#7c3aed"/>
+      <text x="127" y="21" fill="#ddd6fe" font-family="system-ui, sans-serif" font-size="13" font-weight="600">React.js</text>
+
+      <rect x="210" y="0" width="85" height="32" rx="16" fill="#2e1065" stroke="#7c3aed"/>
+      <text x="222" y="21" fill="#ddd6fe" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Next.js</text>
+
+      <rect x="305" y="0" width="105" height="32" rx="16" fill="#2e1065" stroke="#7c3aed"/>
+      <text x="318" y="21" fill="#ddd6fe" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tailwind CSS</text>
+
+      <rect x="420" y="0" width="95" height="32" rx="16" fill="#2e1065" stroke="#7c3aed"/>
+      <text x="432" y="21" fill="#ddd6fe" font-family="system-ui, sans-serif" font-size="13" font-weight="600">AI Valuation</text>
+    </g>
+  </g>
+
+  <!-- Right: Luxury Property Portal UI Mockup -->
+  <g transform="translate(620, 90)">
+    <rect width="520" height="570" rx="20" fill="#0d091e" stroke="#3b2b68" stroke-width="2"/>
+    <rect width="520" height="46" rx="20" fill="#1b1238"/>
+    <circle cx="28" cy="23" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="23" r="6" fill="#eab308"/>
+    <circle cx="68" cy="23" r="6" fill="#22c55e"/>
+    <text x="100" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">HomeScape AI Luxury Living • Property Explorer</text>
+
+    <!-- Hero Card in UI -->
+    <g transform="translate(24, 65)">
+      <rect width="470" height="260" rx="16" fill="#1a1138" stroke="#4c1d95"/>
+      <!-- Simulated Architectural Villa Illustration -->
+      <path d="M 40 220 L 140 100 L 280 100 L 320 140 L 440 140 L 440 220 Z" fill="#2e1065" opacity="0.6"/>
+      <polygon points="140,100 240,40 340,100" fill="#3b0764"/>
+      <rect x="180" y="130" width="60" height="90" rx="4" fill="#a78bfa" opacity="0.3"/>
+      <rect x="270" y="140" width="90" height="50" rx="4" fill="#c084fc" opacity="0.3"/>
+      <line x1="30" y1="220" x2="445" y2="220" stroke="#7c3aed" stroke-width="2"/>
+
+      <!-- Floating Badges -->
+      <rect x="25" y="25" width="130" height="30" rx="15" fill="#0f0728" stroke="#a855f7"/>
+      <text x="40" y="45" fill="#f3e8ff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">★ 98% AI Match</text>
+
+      <rect x="330" y="25" width="115" height="30" rx="15" fill="#0f0728" stroke="#ec4899"/>
+      <text x="345" y="45" fill="#fbcfe8" font-family="system-ui, sans-serif" font-size="12" font-weight="700">₹3.85 Cr</text>
+
+      <!-- Bottom overlay on hero card -->
+      <rect x="1" y="190" width="468" height="69" rx="16" fill="#090514" fill-opacity="0.9"/>
+      <text x="25" y="222" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="800">Skyline Penthouse &amp; Villa Estate</text>
+      <text x="25" y="242" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="12">4 Beds • 5 Baths • 4,500 sqft • Infinity Pool</text>
+    </g>
+
+    <!-- Smart Filter & AI valuation pill -->
+    <g transform="translate(24, 345)">
+      <rect width="470" height="195" rx="16" fill="#140d2d" stroke="#3b2b68"/>
+      <text x="20" y="32" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">AI Valuation Intelligence &amp; Trend Forecast</text>
+      
+      <g transform="translate(20, 50)">
+        <rect width="135" height="60" rx="12" fill="#1b1238"/>
+        <text x="15" y="26" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Appreciation</text>
+        <text x="15" y="48" fill="#34d399" font-family="system-ui, sans-serif" font-size="18" font-weight="800">+14.2% YoY</text>
+      </g>
+
+      <g transform="translate(170, 50)">
+        <rect width="135" height="60" rx="12" fill="#1b1238"/>
+        <text x="15" y="26" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Rental Yield</text>
+        <text x="15" y="48" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="18" font-weight="800">6.8% Annually</text>
+      </g>
+
+      <g transform="translate(320, 50)">
+        <rect width="130" height="60" rx="12" fill="#1b1238"/>
+        <text x="15" y="26" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Safety Score</text>
+        <text x="15" y="48" fill="#facc15" font-family="system-ui, sans-serif" font-size="18" font-weight="800">9.4 / 10</text>
+      </g>
+
+      <!-- Action Button inside card -->
+      <rect x="20" y="130" width="430" height="46" rx="23" fill="linear-gradient(90deg, #7c3aed, #ec4899)"/>
+      <text x="160" y="158" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="800">Schedule 3D Virtual Tour</text>
+    </g>
+  </g>
+</svg>

@@ -1,15 +1,28 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import {
+  RiDownloadLine,
+  RiGithubFill,
+  RiGooglePlayFill,
+  RiMailFill,
+  RiPhoneFill,
+  RiRocketFill,
+  RiSparkling2Fill,
+  RiArrowRightLine,
+  RiCheckDoubleFill,
+  RiMapPin2Fill,
+} from "react-icons/ri";
 
 import useParallax from "../reactbits/hooks/useParallax";
-import { styles } from "../styles";
 import useMediaQuery from "../utils/useMediaQuery";
+import { personalInfo } from "../constants";
 
 const typedItems = [
-  "Full Stack Developer",
-  "Product Builder",
-  "AI Automation Developer",
-  "Problem Solver",
+  "Software Developer",
+  "Full-Stack .NET & MERN Engineer",
+  "React Native & Mobile Specialist",
+  "Cloud & Microservices Architect",
+  "AI/ML & Real-Time Systems Builder",
 ];
 
 const Hero = () => {
@@ -17,6 +30,7 @@ const Hero = () => {
   const [itemIndex, setItemIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
+  const [view3D, setView3D] = useState(false);
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -32,7 +46,6 @@ const Hero = () => {
   useEffect(() => {
     const currentItem = typedItems[itemIndex];
 
-    // clear previous timers (IMPORTANT OPTIMIZATION)
     clearTimeout(timeoutRef.current);
     clearTimeout(pauseRef.current);
 
@@ -44,7 +57,7 @@ const Hero = () => {
         } else {
           pauseRef.current = setTimeout(() => {
             setIsTyping(false);
-          }, 900);
+          }, 1200);
         }
       } else {
         if (charIndex > 0) {
@@ -55,7 +68,7 @@ const Hero = () => {
           setItemIndex((v) => (v + 1) % typedItems.length);
         }
       }
-    }, isTyping ? 80 : 38);
+    }, isTyping ? 70 : 35);
 
     return () => {
       clearTimeout(timeoutRef.current);
@@ -66,138 +79,273 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen mx-auto overflow-hidden bg-[#05070d]"
+      className="relative w-full min-h-screen mx-auto overflow-hidden bg-[#f4efe6] pt-32 pb-20 flex flex-col justify-between"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(193,157,35,0.12),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.06),transparent_25%),linear-gradient(180deg,#05070d_0%,#080b14_55%,#05070d_100%)]" />
+      {/* Framer "Product Designer" Subtle Background Grid & Grain */}
+      <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+      
+      {/* Ambient Warm Vignette Lighting */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#eadecd]/60 via-[#f4efe6]/0 to-transparent rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 right-[5%] w-[450px] h-[450px] bg-[#dfd6c6]/50 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] bg-[size:58px_58px]" />
-
-      {/* RIGHT VISUAL (UNCHANGED) */}
-      <div className="absolute right-[-120px] top-[12%] hidden md:flex w-[560px] h-[560px] items-center justify-center z-[2]">
-        <motion.div
-          className="absolute w-[78%] h-[78%] rounded-full border border-white/10"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        />
-
-        <motion.div
-          className="absolute w-[58%] h-[58%] rounded-full border border-[#c19d23]/30 border-dashed"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-        />
-
-        <motion.div
-          className="absolute w-[38%] h-[38%] rounded-full border border-white/15"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* 3D cube kept same */}
-        <motion.div
-          animate={{
-            rotateX: [0, 360],
-            rotateY: [0, 360],
-            y: [0, -18, 0],
-          }}
-          transition={{
-            rotateX: { duration: 7, repeat: Infinity },
-            rotateY: { duration: 9, repeat: Infinity },
-            y: { duration: 3, repeat: Infinity },
-          }}
-          className="relative w-[130px] h-[130px]"
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {[
-            ["translateZ(65px)", "</>"],
-            ["rotateY(90deg) translateZ(65px)", "{ }"],
-            ["rotateY(180deg) translateZ(65px)", "01"],
-            ["rotateY(-90deg) translateZ(65px)", "API"],
-            ["rotateX(90deg) translateZ(65px)", "UI"],
-            ["rotateX(-90deg) translateZ(65px)", "DEV"],
-          ].map(([transform, text]) => (
-            <div
-              key={text}
-              className="absolute inset-0 rounded-[30px] border border-[#c19d23]/45 bg-[#080b14]/75 backdrop-blur-xl flex items-center justify-center text-[#f7df8a] text-[20px] font-black tracking-widest"
-              style={{ transform }}
-            >
-              {text}
-            </div>
-          ))}
-        </motion.div>
+      {/* GIANT ARCHITECTURAL TYPOGRAPHY BACKDROP (Product Designer Signature Style) */}
+      <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-full select-none pointer-events-none text-center overflow-hidden z-0">
+        <span className="text-[90px] sm:text-[150px] md:text-[210px] lg:text-[260px] font-black tracking-[-0.05em] leading-none uppercase text-black/[0.038] whitespace-nowrap block">
+          DEVELOPER
+        </span>
       </div>
 
-      {/* MAIN CONTENT (UNCHANGED) */}
-      <div
-        className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-10`}
-      >
-        <div className="flex flex-col justify-center items-center mt-5">
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-            }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            className="w-5 h-5 rounded-full bg-[#c19d23]"
-          />
-
-          <div className="w-1 sm:h-80 h-40 bg-gradient-to-b from-[#c19d23] via-[#f7df8a]/50 to-transparent" />
-        </div>
-
+      {/* MAIN CONTENT CONTAINER */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-14 items-center flex-1">
+        
+        {/* LEFT: EDITORIAL TYPOGRAPHY & INTRO */}
         <motion.div
           style={parallaxStyle}
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="max-w-4xl"
+          initial={{ opacity: 0, x: -35 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.85, ease: "easeOut" }}
+          className="flex flex-col items-start"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-sm font-semibold mb-5">
-            Building products that feel fast, clean and meaningful
-          </div>
+          {/* Framer Status Pill (Dark pill with glowing green live beacon on beige) */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0d0f14] text-white text-xs sm:text-sm font-semibold mb-6 shadow-[0_10px_25px_rgba(0,0,0,0.15)] border border-white/10"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span>Available for Full-Time Roles &amp; Engineering Projects</span>
+          </motion.div>
 
-          <h1 className={`${styles.heroHeadText} text-white`}>
+          {/* Headline */}
+          <h1 className="text-[#121418] text-[40px] sm:text-[56px] lg:text-[68px] font-black leading-[1.05] tracking-tight">
             Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-[#c19d23] via-[#f7df8a] to-white bg-clip-text text-transparent">
-              Mridul Mishra
+            <span className="bg-gradient-to-r from-[#121418] via-[#78541a] to-[#c19d23] bg-clip-text text-transparent">
+              {personalInfo.name}
             </span>
           </h1>
 
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I'm{" "}
-            <span className="text-[#f7df8a] font-black">{typedText}</span>
-            <span className="text-[#c19d23] animate-pulse"> |</span>
-            <br />
+          {/* Typewriter Role Line */}
+          <div className="mt-4 min-h-[40px] flex items-center">
+            <span className="text-xl sm:text-2xl lg:text-[28px] font-black text-[#854d0e]">
+              {typedText}
+            </span>
+            <span className="text-[#c19d23] text-2xl lg:text-3xl font-bold animate-pulse ml-1">
+              |
+            </span>
+          </div>
 
-            <b className="inline-block mt-3 max-w-3xl text-secondary leading-8">
-              I design, develop and ship complete digital products — from frontend experiences to backend systems, automation workflows and scalable product architecture.
-            </b>
+          {/* Bio on Beige Canvas */}
+          <p className="mt-5 text-[#44403c] text-[16px] sm:text-[18px] max-w-2xl leading-relaxed font-normal">
+            Software Developer with <strong className="text-[#121418] font-bold">2.5+ years of enterprise experience</strong> architecting scalable cloud-native web, backend, and mobile applications. Currently engineering solutions with <strong className="text-[#121418]">.NET Core, ASP.NET, MERN, React Native, Azure, and AI/ML</strong> with clean architecture and reliable delivery.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#projects" className="px-7 py-4 rounded-2xl bg-gradient-to-r from-[#c19d23] via-[#d6b642] to-[#c19d23] text-white font-bold">
-              View Projects
+          {/* Key Skill Badges (Dark pills floating over beige) */}
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {[
+              "ASP.NET Core",
+              "C# Microservices",
+              "React Native",
+              "Node.js",
+              "Azure Cloud",
+              "PostgreSQL",
+              "Socket.io",
+              "Firebase",
+            ].map((badge) => (
+              <span
+                key={badge}
+                className="px-3.5 py-1.5 rounded-xl bg-[#0d0f14] text-white/90 text-xs font-semibold shadow-sm border border-white/10 hover:border-[#c19d23]/50 transition"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+
+          {/* High-Contrast Action CTAs */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="#karto-spotlight"
+              className="px-7 py-4 rounded-2xl bg-[#0d0f14] text-white font-extrabold flex items-center gap-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.22)] hover:bg-[#1a1c24] hover:scale-105 active:scale-95 transition-all duration-300 border border-white/15"
+            >
+              <RiRocketFill size={18} className="text-[#f59e0b]" />
+              <span>Explore Karto (Major)</span>
             </a>
 
-            <a href="#contact" className="px-7 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-bold">
-              Let's Connect
+            <a
+              href="#projects"
+              className="px-7 py-4 rounded-2xl bg-white border border-[#d6cebf] text-[#121418] font-bold flex items-center gap-2 hover:bg-[#eae4d8] hover:border-[#b8ad99] shadow-sm transition-all duration-300"
+            >
+              <span>View All 10 Projects</span>
+              <RiArrowRightLine size={16} />
             </a>
+
+            <a
+              href={personalInfo.resumeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 rounded-2xl bg-[#f59e0b]/15 border border-[#f59e0b]/50 text-[#854d0e] font-extrabold flex items-center gap-2 hover:bg-[#f59e0b]/25 transition-all duration-300"
+            >
+              <RiDownloadLine size={17} />
+              <span>Resume</span>
+            </a>
+          </div>
+
+          {/* Social Contact Row */}
+          <div className="mt-9 flex flex-wrap items-center gap-3 pt-6 border-t border-[#dfd6c6] w-full">
+            <span className="text-[#78716c] text-xs uppercase tracking-[2px] font-bold mr-1">
+              Connect:
+            </span>
+
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0d0f14] text-white text-xs font-medium hover:bg-[#1e2129] shadow-sm transition"
+            >
+              <RiGithubFill size={15} />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#d6cebf] text-[#121418] text-xs font-semibold hover:bg-[#f2ece1] shadow-sm transition"
+            >
+              <RiMailFill size={15} className="text-[#c19d23]" />
+              <span>{personalInfo.email}</span>
+            </a>
+
+            <a
+              href={`tel:${personalInfo.phone}`}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#d6cebf] text-[#121418] text-xs font-semibold hover:bg-[#f2ece1] shadow-sm transition"
+            >
+              <RiPhoneFill size={15} className="text-[#c19d23]" />
+              <span>{personalInfo.phone}</span>
+            </a>
+
+            <a
+              href={personalInfo.kartoPlayStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 shadow-sm transition"
+            >
+              <RiGooglePlayFill size={15} />
+              <span>Play Store</span>
+            </a>
+          </div>
+        </motion.div>
+
+        {/* RIGHT: 3D DEVELOPER CENTERPIECE IN HIGH-CONTRAST DARK PEDESTAL CARD */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.95, ease: "easeOut", delay: 0.2 }}
+          className="relative flex items-center justify-center"
+        >
+          {/* Framer Subtle Shadow Ring */}
+          <div className="absolute w-[380px] h-[380px] sm:w-[460px] sm:h-[460px] rounded-full bg-[#dfd6c6]/80 blur-[80px] pointer-events-none" />
+
+          {/* Central Dark Obsidian 3D Card */}
+          <div className="relative z-10 w-[310px] sm:w-[380px] md:w-[420px] rounded-[38px] p-2.5 bg-gradient-to-b from-[#1c1f26] via-[#0d0f14] to-[#050608] shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-black/80">
+            <div className="relative rounded-[32px] overflow-hidden bg-[#090a0f] border border-white/10">
+              
+              {/* Developer Studio Portrait with MacBook */}
+              <div className="relative h-[400px] sm:h-[480px] w-full overflow-hidden bg-gradient-to-b from-[#181b22] to-[#07080c]">
+                <img
+                  src={personalInfo.photo}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover object-top scale-105 hover:scale-110 transition-transform duration-700"
+                />
+
+                {/* Dark Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/25 to-transparent" />
+                
+                {/* Name & Title Bar */}
+                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/15">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-white font-extrabold text-lg leading-tight">
+                        {personalInfo.name}
+                      </h3>
+                      <p className="text-[#f7df8a] text-xs font-semibold mt-0.5">
+                        Software Developer @ Midtown Software
+                      </p>
+                    </div>
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#c19d23]/25 border border-[#c19d23]/60 text-[#f7df8a]">
+                      <RiCheckDoubleFill size={16} />
+                    </span>
+                  </div>
+                  <p className="text-white/60 text-[11px] mt-1.5 flex items-center gap-1.5">
+                    <RiMapPin2Fill className="text-[#f59e0b]" />
+                    Shahjahanpur, Uttar Pradesh, India
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Orbiting Badge 1: Karto */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -left-6 sm:-left-8 z-20 px-4 py-2.5 rounded-2xl bg-[#0d0f14] border border-[#f59e0b]/60 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.35)] flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/20 flex items-center justify-center text-[#f59e0b]">
+                <RiRocketFill size={20} />
+              </div>
+              <div>
+                <p className="text-white font-black text-xs">Karto On-Demand</p>
+                <p className="text-emerald-400 text-[11px] font-semibold">● Live on Google Play</p>
+              </div>
+            </motion.div>
+
+            {/* Orbiting Badge 2: Experience */}
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -bottom-6 -right-4 sm:-right-8 z-20 px-4 py-2.5 rounded-2xl bg-[#0d0f14] border border-cyan-500/50 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.35)] flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                <RiSparkling2Fill size={20} />
+              </div>
+              <div>
+                <p className="text-white font-black text-xs">2.5+ Years Experience</p>
+                <p className="text-cyan-300 text-[11px] font-semibold">.NET Core • MERN • Azure</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* SCROLL */}
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-20">
-        <a href="#about">
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            className="w-[38px] h-[68px] rounded-3xl border-2 border-[#c19d23]/70 flex justify-center items-start p-2 bg-white/5"
-          >
-            <motion.div
-              animate={{ y: [0, 26, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-3 h-3 rounded-full bg-[#c19d23]"
-            />
-          </motion.div>
-        </a>
+      {/* BOTTOM FLOATING DARK STATS BAR (Framer Product Designer signature footer card) */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-14 mt-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="rounded-[30px] border border-white/10 bg-[#0d0f14] p-5 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 shadow-[0_20px_70px_rgba(0,0,0,0.25)] text-white"
+        >
+          <div className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+            <span className="text-[32px] sm:text-[40px] font-black text-[#f7df8a]">2.5+</span>
+            <span className="text-white/70 text-xs sm:text-sm font-medium">Years Dev Experience</span>
+          </div>
+
+          <div className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+            <span className="text-[32px] sm:text-[40px] font-black text-emerald-400">10+</span>
+            <span className="text-white/70 text-xs sm:text-sm font-medium">Enterprise &amp; GitHub Projects</span>
+          </div>
+
+          <div className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+            <span className="text-[32px] sm:text-[40px] font-black text-[#38bdf8]">Karto</span>
+            <span className="text-white/70 text-xs sm:text-sm font-medium">Flagship App on Play Store</span>
+          </div>
+
+          <div className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+            <span className="text-[32px] sm:text-[40px] font-black text-purple-400">100%</span>
+            <span className="text-white/70 text-xs sm:text-sm font-medium">Production Reliability</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

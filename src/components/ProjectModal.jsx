@@ -483,6 +483,18 @@ const ProjectModal = ({
                 transition={{ delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
+                {/* Google Play Store Button */}
+                {project.play_store_link && (
+                  <button
+                    onClick={() =>
+                      window.open(project.play_store_link, "_blank")
+                    }
+                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    Google Play
+                  </button>
+                )}
+
                 {/* Live Demo Button */}
                 {project.live_demo_link && (
                   <button

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051329"/>
+      <stop offset="50%" stop-color="#020b17"/>
+      <stop offset="100%" stop-color="#01050d"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgGrad2)"/>
+  
+  <circle cx="300" cy="200" r="220" fill="#0284c7" opacity="0.15" filter="url(#glow2)"/>
+  <circle cx="950" cy="500" r="250" fill="#0d9488" opacity="0.12" filter="url(#glow2)"/>
+
+  <!-- Left: Overview & Stack -->
+  <g transform="translate(80, 100)">
+    <rect width="180" height="38" rx="19" fill="#0284c7" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.5"/>
+    <circle cx="22" cy="19" r="6" fill="#38bdf8"/>
+    <text x="38" y="24" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">ENTERPRISE SAAS</text>
+
+    <text x="0" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">NatGasHub</text>
+    <text x="0" y="130" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="19" font-weight="500">Natural Gas Pipeline Transportation &amp; Tariff Management</text>
+
+    <g transform="translate(0, 175)">
+      <rect width="150" height="75" rx="16" fill="#0b192e" stroke="#1e3a5f"/>
+      <text x="20" y="36" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="24" font-weight="800">100M+ BTU</text>
+      <text x="20" y="58" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Daily Gas Flow</text>
+    </g>
+
+    <g transform="translate(170, 175)">
+      <rect width="150" height="75" rx="16" fill="#0b192e" stroke="#1e3a5f"/>
+      <text x="20" y="36" fill="#14b8a6" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Azure Cloud</text>
+      <text x="20" y="58" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Microservices Arch</text>
+    </g>
+
+    <g transform="translate(340, 175)">
+      <rect width="150" height="75" rx="16" fill="#0b192e" stroke="#1e3a5f"/>
+      <text x="20" y="36" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Automated</text>
+      <text x="20" y="58" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Tariff Invoicing</text>
+    </g>
+
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="115" height="32" rx="16" fill="#0f2137" stroke="#1e40af"/>
+      <text x="14" y="21" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="600">ASP.NET Core</text>
+
+      <rect x="125" y="0" width="55" height="32" rx="16" fill="#0f2137" stroke="#1e40af"/>
+      <text x="139" y="21" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="600">C#</text>
+
+      <rect x="190" y="0" width="105" height="32" rx="16" fill="#0f2137" stroke="#1e40af"/>
+      <text x="202" y="21" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="600">SQL Server</text>
+
+      <rect x="305" y="0" width="105" height="32" rx="16" fill="#0f2137" stroke="#1e40af"/>
+      <text x="318" y="21" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Azure Cloud</text>
+
+      <rect x="420" y="0" width="95" height="32" rx="16" fill="#0f2137" stroke="#1e40af"/>
+      <text x="432" y="21" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13" font-weight="600">REST APIs</text>
+    </g>
+  </g>
+
+  <!-- Right: Enterprise Dashboard UI Mockup -->
+  <g transform="translate(620, 90)">
+    <!-- Window Frame -->
+    <rect width="520" height="570" rx="20" fill="#081426" stroke="#1e3a5f" stroke-width="2"/>
+    
+    <!-- Title Bar -->
+    <rect width="520" height="46" rx="20" fill="#0b1e38"/>
+    <circle cx="28" cy="23" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="23" r="6" fill="#eab308"/>
+    <circle cx="68" cy="23" r="6" fill="#22c55e"/>
+    <text x="100" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">NatGasHub Pipeline Control Console • Production</text>
+
+    <!-- Metrics row -->
+    <g transform="translate(24, 65)">
+      <rect width="145" height="80" rx="12" fill="#0a182c" stroke="#1e3a5f"/>
+      <text x="15" y="28" fill="#64748b" font-family="system-ui, sans-serif" font-size="11" font-weight="700">PIPELINE PRESSURE</text>
+      <text x="15" y="55" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="20" font-weight="800">842.6 PSI</text>
+      <text x="15" y="70" fill="#10b981" font-family="system-ui, sans-serif" font-size="10">● Optimal Flow Rate</text>
+
+      <rect x="160" y="0" width="145" height="80" rx="12" fill="#0a182c" stroke="#1e3a5f"/>
+      <text x="175" y="28" fill="#64748b" font-family="system-ui, sans-serif" font-size="11" font-weight="700">NOMINATIONS</text>
+      <text x="175" y="55" fill="#14b8a6" font-family="system-ui, sans-serif" font-size="20" font-weight="800">1,482 MMBtu</text>
+      <text x="175" y="70" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10">Scheduled Today</text>
+
+      <rect x="320" y="0" width="150" height="80" rx="12" fill="#0a182c" stroke="#1e3a5f"/>
+      <text x="335" y="28" fill="#64748b" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ACTIVE CONTRACTS</text>
+      <text x="335" y="55" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="20" font-weight="800">86 Shippers</text>
+      <text x="335" y="70" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Utility &amp; Tariffs OK</text>
+    </g>
+
+    <!-- Gas Flow Chart / Visual Pipeline Network -->
+    <g transform="translate(24, 165)">
+      <rect width="470" height="190" rx="14" fill="#09172a" stroke="#1e3a5f"/>
+      <text x="20" y="30" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Real-Time Telemetry &amp; Capacity Scheduling</text>
+      
+      <!-- Wave / Graph Chart -->
+      <path d="M 30 140 Q 90 90 150 120 T 260 70 T 360 100 T 440 60" fill="none" stroke="#38bdf8" stroke-width="3"/>
+      <path d="M 30 140 Q 90 90 150 120 T 260 70 T 360 100 T 440 60 L 440 160 L 30 160 Z" fill="#38bdf8" fill-opacity="0.1"/>
+
+      <!-- Data nodes -->
+      <circle cx="150" cy="120" r="5" fill="#38bdf8"/>
+      <circle cx="260" cy="70" r="5" fill="#38bdf8"/>
+      <circle cx="360" cy="100" r="5" fill="#38bdf8"/>
+      <circle cx="440" cy="60" r="6" fill="#10b981"/>
+
+      <line x1="30" y1="160" x2="440" y2="160" stroke="#1e3a5f" stroke-width="1"/>
+      <text x="30" y="175" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">00:00</text>
+      <text x="140" y="175" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">06:00</text>
+      <text x="250" y="175" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">12:00</text>
+      <text x="350" y="175" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">18:00</text>
+      <text x="420" y="175" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">Live</text>
+    </g>
+
+    <!-- Invoicing & Tariffs Grid Table -->
+    <g transform="translate(24, 375)">
+      <rect width="470" height="170" rx="14" fill="#09172a" stroke="#1e3a5f"/>
+      <text x="20" y="28" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Contract &amp; Shipper Invoicing Queue</text>
+
+      <!-- Row 1 -->
+      <line x1="20" y1="42" x2="450" y2="42" stroke="#1e3a5f"/>
+      <text x="25" y="65" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Gulf Coast Pipeline Segment #4</text>
+      <text x="250" y="65" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Firm Transport</text>
+      <rect x="375" y="52" width="75" height="20" rx="10" fill="#10b981" fill-opacity="0.2"/>
+      <text x="388" y="66" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Settled</text>
+
+      <!-- Row 2 -->
+      <line x1="20" y1="80" x2="450" y2="80" stroke="#1e3a5f"/>
+      <text x="25" y="103" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Midwest Interstate Hub 12</text>
+      <text x="250" y="103" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Interruptible</text>
+      <rect x="375" y="90" width="75" height="20" rx="10" fill="#f59e0b" fill-opacity="0.2"/>
+      <text x="388" y="104" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Auditing</text>
+
+      <!-- Row 3 -->
+      <line x1="20" y1="118" x2="450" y2="118" stroke="#1e3a5f"/>
+      <text x="25" y="141" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12">Northern Border Distribution</text>
+      <text x="250" y="141" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Park &amp; Loan</text>
+      <rect x="375" y="128" width="75" height="20" rx="10" fill="#0284c7" fill-opacity="0.2"/>
+      <text x="390" y="142" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Active</text>
+    </g>
+  </g>
+</svg>
