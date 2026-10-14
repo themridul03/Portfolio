@@ -186,35 +186,34 @@ const Contact = () => {
           variants={slideIn("down", "spring", 0.1, 0.9)}
           className="relative z-10 text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-sm font-semibold mb-5">
-            <RiSparkling2Fill />
-            Available for freelance & collaborations
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-5">
+            <RiSparkling2Fill className="text-[#f59e0b]" />
+            Available for enterprise roles &amp; freelance
           </div>
 
-          <h2 className="text-white font-black md:text-[64px] sm:text-[52px] xs:text-[42px] text-[32px] px-4">
+          <h2 className="text-[#121418] font-black md:text-[64px] sm:text-[52px] xs:text-[42px] text-[32px] px-4 tracking-tight leading-tight">
             Let&apos;s Build Something
-            <span className="block bg-gradient-to-r from-[#c19d23] via-[#f7df8a] to-white bg-clip-text text-transparent">
-              Amazing Together
+            <span className="block bg-gradient-to-r from-[#b45309] via-[#ea580c] to-[#121418] bg-clip-text text-transparent">
+              Exceptional Together
             </span>
           </h2>
 
-          <p className="mt-5 text-secondary text-[16px] max-w-2xl mx-auto leading-7 px-4">
-            Have a project, product idea, automation workflow or collaboration
-            in mind? Send me a message and let&apos;s discuss it.
+          <p className="mt-5 text-[#78716c] text-[16px] max-w-2xl mx-auto leading-7 px-4">
+            Have a project, product idea, system architecture, or career opportunity in mind? Send me a message and let&apos;s build it.
           </p>
         </motion.div>
 
         <div className="relative z-10 xl:mt-14 mt-10 flex xl:flex-row flex-col-reverse gap-8 lg:gap-10 overflow-hidden text-white px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={slideIn("left", "tween", 0.2, 1)}
-            className="flex-[0.85] w-full xl:w-[42rem] rounded-[30px] border border-white/10 bg-[#080b14]/85 backdrop-blur-xl p-5 sm:p-7 lg:p-9 shadow-2xl"
+            className="flex-[0.85] w-full xl:w-[42rem] rounded-[30px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 sm:p-7 lg:p-9 shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
           >
-            <p className={`text-[#c19d23] ${styles.sectionSubText}`}>
+            <p className="text-[#f7df8a] text-xs sm:text-sm uppercase tracking-[3px] font-bold">
               Get in touch
             </p>
 
             <h3
-              className={`${styles.sectionHeadText} text-[30px] sm:text-[36px] lg:text-[42px]`}
+              className="text-white font-black text-[30px] sm:text-[36px] lg:text-[42px] tracking-tight mt-1"
             >
               Contact.
             </h3>
@@ -350,7 +349,7 @@ const Contact = () => {
           >
             <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-[#c19d23]/10 via-transparent to-cyan-500/10 blur-2xl" />
 
-            <div className="relative h-full rounded-[32px] border border-white/10 bg-[#080b14]/40 backdrop-blur-xl overflow-hidden">
+            <div className="relative h-full rounded-[32px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
               <EarthCanvas />
 
               <motion.div

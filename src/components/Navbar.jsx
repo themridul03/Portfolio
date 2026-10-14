@@ -119,10 +119,10 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div
-        className={`mx-3 sm:mx-5 mt-3 rounded-2xl border transition-all duration-500 ${
+        className={`mx-3 sm:mx-8 lg:mx-auto lg:max-w-6xl mt-4 rounded-full border transition-all duration-500 ${
           scrolled || isActive
-            ? "border-white/10 bg-[#080b14]/75 backdrop-blur-2xl shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
-            : "border-transparent bg-transparent"
+            ? "border-white/10 bg-[#0d0f14]/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+            : "border-black/10 bg-[#0d0f14]/90 backdrop-blur-xl shadow-[0_15px_45px_rgba(0,0,0,0.16)]"
         }`}
       >
         <div className="flex items-center justify-between px-4 sm:px-6 py-3">

@@ -16,8 +16,8 @@ const Education = () => {
   return (
     <div id="education" className="relative pt-6">
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-xs sm:text-sm font-semibold mb-4">
-          <RiGraduationCapFill />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
+          <RiGraduationCapFill className="text-[#f59e0b]" />
           Academic &amp; Professional Qualifications
         </div>
 
@@ -25,7 +25,7 @@ const Education = () => {
           Education &amp; Credentials.
         </h2>
 
-        <p className="mt-4 text-secondary text-[16px] sm:text-[18px] leading-relaxed">
+        <p className="mt-4 text-[#78716c] text-[16px] sm:text-[18px] leading-relaxed">
           Formal academic foundation in computer applications paired with industry-standard professional certifications.
         </p>
       </div>
@@ -34,8 +34,8 @@ const Education = () => {
         
         {/* LEFT: EDUCATION CARDS */}
         <div>
-          <h3 className="text-white text-xl font-black mb-6 flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-xl bg-[#c19d23]/20 flex items-center justify-center text-[#f7df8a]">
+          <h3 className="text-[#121418] text-xl font-black mb-6 flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-xl bg-[#c19d23]/20 flex items-center justify-center text-[#92400e]">
               <RiGraduationCapFill size={18} />
             </span>
             Academic Degrees
@@ -49,7 +49,7 @@ const Education = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-2xl border border-white/10 bg-[#080b14]/90 backdrop-blur-xl p-6 hover:border-[#c19d23]/40 transition-all duration-300"
+                className="rounded-2xl border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-6 hover:border-[#c19d23]/40 transition-all duration-300 shadow-[0_15px_45px_rgba(0,0,0,0.25)]"
               >
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
@@ -61,7 +61,7 @@ const Education = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2 text-secondary text-xs mt-2">
+                <div className="flex items-center gap-2 text-white/60 text-xs mt-2">
                   <RiMapPin2Line />
                   <span>{edu.location}</span>
                   <span>•</span>
@@ -87,8 +87,8 @@ const Education = () => {
 
         {/* RIGHT: CERTIFICATIONS */}
         <div>
-          <h3 className="text-white text-xl font-black mb-6 flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+          <h3 className="text-[#121418] text-xl font-black mb-6 flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-600">
               <RiAwardFill size={18} />
             </span>
             Industry Certifications
@@ -102,7 +102,7 @@ const Education = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-2xl border border-white/10 bg-[#080b14]/90 backdrop-blur-xl p-6 hover:border-cyan-500/40 transition-all duration-300"
+                className="rounded-2xl border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-6 hover:border-cyan-500/40 transition-all duration-300 shadow-[0_15px_45px_rgba(0,0,0,0.25)]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3.5">

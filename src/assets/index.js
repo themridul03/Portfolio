@@ -57,9 +57,9 @@ import bytecraft from "./project/bytecraft.svg";
 import mimihotels from "./project/mimihotels.svg";
 import greencross from "./project/greencross.svg";
 import prachini from "./project/prachini.svg";
-import mridul from "@profile";
-import developer3d from "@developer3d";
-import karto3d from "@karto3d";
+import mridul from "./mridul.png";
+import developer3d from "./developer3d.jpg";
+import karto3d from "./karto3d.jpg";
 
 import code from "./badge/code.svg";
 import concepts from "./badge/concepts.svg";

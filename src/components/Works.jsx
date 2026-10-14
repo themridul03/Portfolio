@@ -109,7 +109,7 @@ const ProjectCard = ({
             stiffness: 240,
             damping: 22,
           }}
-          className={`cursor-can-hover relative h-[420px] rounded-[30px] overflow-hidden cursor-pointer group bg-[#080b14] border transition-all duration-500 shadow-[0_10px_35px_rgba(0,0,0,0.35)] ${
+          className={`cursor-can-hover relative h-[420px] rounded-[30px] overflow-hidden cursor-pointer group bg-[#0d0f14] border transition-all duration-500 shadow-[0_10px_35px_rgba(0,0,0,0.35)] ${
             isMajor
               ? "border-[#f59e0b]/50 shadow-[0_15px_60px_rgba(245,158,11,0.15)]"
               : "border-white/[0.08] hover:border-[#c19d23]/50"
@@ -327,8 +327,8 @@ const Works = () => {
 
         {/* Header */}
         <motion.div variants={textVariant()} className="relative z-10 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-xs sm:text-sm font-semibold mb-4">
-            <RiSparkling2Fill />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
+            <RiSparkling2Fill className="text-[#f59e0b]" />
             Production &amp; GitHub Portfolio
           </div>
 
@@ -336,7 +336,7 @@ const Works = () => {
             Featured Projects.
           </h2>
 
-          <p className="mt-4 text-secondary text-[16px] sm:text-[18px] leading-relaxed">
+          <p className="mt-4 text-[#78716c] text-[16px] sm:text-[18px] leading-relaxed">
             A comprehensive showcase of all enterprise platforms, mobile applications, and open-source GitHub repositories engineered by Mridul Mohan Mishra.
           </p>
         </motion.div>
@@ -352,14 +352,14 @@ const Works = () => {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 ${
                   isSelected
-                    ? "bg-[#c19d23] text-black shadow-[0_0_25px_rgba(193,157,35,0.35)] scale-105"
-                    : "bg-white/[0.04] text-white/70 border border-white/10 hover:border-white/30 hover:text-white"
+                    ? "bg-[#0d0f14] text-white shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-black/20 scale-105"
+                    : "bg-white/80 text-[#44403c] border border-[#d6cfc4] hover:bg-white hover:text-black hover:border-black/30"
                 }`}
               >
                 <span>{cat.label}</span>
                 <span
                   className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
-                    isSelected ? "bg-black/25 text-black" : "bg-white/10 text-white/70"
+                    isSelected ? "bg-white/20 text-white" : "bg-black/5 text-[#57534e]"
                   }`}
                 >
                   {cat.count}

@@ -39,7 +39,7 @@ const ServiceCard = ({ index, title, subtitle, description, icon }) => (
     >
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#c19d23]/20 via-cyan-500/10 to-indigo-500/10 blur-xl" />
 
-      <div className="relative bg-[#080b14]/95 backdrop-blur-xl rounded-[26px] py-7 px-6 min-h-[300px] flex flex-col justify-between border border-white/10 h-full">
+      <div className="relative bg-[#0d0f14] backdrop-blur-xl rounded-[26px] py-7 px-6 min-h-[300px] flex flex-col justify-between border border-white/10 h-full shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
         <div>
           <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition duration-300">
             <img src={icon} alt={title} className="w-8 h-8 object-contain" />
@@ -101,15 +101,15 @@ const About = () => {
               rotateX: 3,
               scale: 1.01,
             }}
-            className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#080b14]/85 backdrop-blur-xl p-7 sm:p-9 shadow-2xl"
+            className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-7 sm:p-9 shadow-[0_25px_70px_rgba(0,0,0,0.35)]"
             style={{ transformStyle: "preserve-3d" }}
           >
             <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#c19d23]/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-xs sm:text-sm font-semibold mb-6">
-                <RiSparkling2Fill />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#fbbf24] text-xs sm:text-sm font-bold tracking-wide uppercase mb-6">
+                <RiSparkling2Fill className="text-[#f59e0b]" />
                 Software Developer • Enterprise &amp; Full-Stack
               </div>
 
@@ -180,7 +180,7 @@ const About = () => {
                   scale: 1.05,
                 }}
                 transition={{ type: "spring", stiffness: 120 }}
-                className="rounded-[24px] border border-white/10 bg-[#080b14]/85 backdrop-blur-xl p-5 sm:p-6 shadow-xl flex flex-col justify-between"
+                className="rounded-[24px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col justify-between"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <div>

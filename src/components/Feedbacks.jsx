@@ -32,7 +32,7 @@ const FeedbackCard = ({
   >
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[#c19d23]/20 blur-2xl" />
 
-    <div className="relative min-h-[360px] rounded-[28px] bg-[#080b14]/95 backdrop-blur-xl border border-white/10 p-7 flex flex-col justify-between">
+    <div className="relative min-h-[360px] rounded-[28px] bg-[#141822] backdrop-blur-xl border border-white/10 p-7 flex flex-col justify-between shadow-xl">
       <div>
         <div className="flex items-center justify-between">
           <div className="w-14 h-14 rounded-2xl bg-[#c19d23]/10 border border-[#c19d23]/30 flex items-center justify-center text-[#c19d23]">
@@ -91,26 +91,25 @@ const Feedbacks = () => {
   const activeTestimonial = testimonials[active];
 
   return (
-    <div className="relative mt-12 overflow-hidden rounded-[32px] bg-[#05070d] border border-white/10">
+    <div className="relative mt-12 overflow-hidden rounded-[32px] bg-[#0d0f14] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-[#c19d23]/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[130px]" />
 
-      <div className={`relative bg-[#080b14]/80 rounded-[32px] ${styles.padding} min-h-[360px]`}>
+      <div className={`relative bg-transparent rounded-[32px] ${styles.padding} min-h-[360px]`}>
         <motion.div variants={textVariant()}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-sm font-semibold mb-5">
-            <RiSparkling2Fill />
-            Real feedback
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#fbbf24] text-xs sm:text-sm font-bold tracking-wide uppercase mb-5">
+            <RiSparkling2Fill className="text-[#f59e0b]" />
+            Client &amp; Peer Endorsements
           </div>
 
-          <p className={`text-[#c19d23] ${styles.sectionSubText}`}>
+          <p className="text-[#f7df8a] text-xs sm:text-sm uppercase tracking-[3px] font-bold">
             What others say
           </p>
 
-          <h2 className={styles.sectionHeadText}>Testimonials.</h2>
+          <h2 className="text-white font-black md:text-[54px] sm:text-[44px] xs:text-[36px] text-[28px] tracking-tight mt-1">Testimonials.</h2>
 
-          <p className="mt-4 text-secondary text-[16px] max-w-2xl leading-7">
-            Words from people I have worked with, collaborated with, and built
-            meaningful products for.
+          <p className="mt-4 text-white/70 text-[16px] max-w-2xl leading-7">
+            Words from colleagues, mentors, and collaborators who have built enterprise platforms with Mridul Mohan Mishra.
           </p>
         </motion.div>
 

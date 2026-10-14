@@ -141,7 +141,7 @@ const ProjectModal = ({
               type: "spring",
               damping: 26,
             }}
-            className="relative bg-[#1a1f35] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl top-12 hide-scroll border border-white/10"
+            className="relative bg-[#0d0f14] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl top-12 hide-scroll border border-white/10"
             style={{
               boxShadow:
                 "0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(139, 92, 246, 0.08)",
@@ -225,7 +225,7 @@ const ProjectModal = ({
             {/* Project Image Carousel */}
             <div
               key={projectKey}
-              className="relative w-full h-[350px] md:h-[450px] overflow-hidden rounded-t-3xl group/carousel bg-[#0d1120]"
+              className="relative w-full h-[350px] md:h-[450px] overflow-hidden rounded-t-3xl group/carousel bg-[#05070a]"
             >
               <motion.img
                 key={`${projectKey}-${safeImageIndex}-${currentImage}`}
@@ -237,7 +237,7 @@ const ProjectModal = ({
                 className="w-full h-full object-contain md:object-cover"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f35] via-[#1a1f35]/20 to-transparent opacity-90 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f14] via-[#0d0f14]/20 to-transparent opacity-90 pointer-events-none"></div>
 
               {/* Image Carousel Controls (if multiple images) */}
               {images.length > 1 && (

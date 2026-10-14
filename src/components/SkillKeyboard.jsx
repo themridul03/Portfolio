@@ -33,17 +33,16 @@ const SkillKeyboard = () => {
       <div className="absolute bottom-0 left-0 w-[480px] h-[480px] bg-purple-500/10 rounded-full blur-[150px]" />
 
       <div className="relative z-10 text-center mb-12">
-        <p className="text-[#c19d23] uppercase tracking-[5px] text-sm font-bold">
-          Technologies I Work With
-        </p>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
+          Tech Stack &amp; Tools
+        </div>
 
-        <h2 className="mt-4 text-white font-black text-[42px] sm:text-[58px] lg:text-[72px]">
-          Skills Keyboard
+        <h2 className="text-[#121418] font-black text-[42px] sm:text-[58px] lg:text-[72px] tracking-tight leading-tight">
+          Skills Keyboard.
         </h2>
 
-        <p className="mt-4 text-secondary max-w-3xl mx-auto leading-7">
-          Select a category and explore my skills through an interactive
-          portfolio-style keyboard.
+        <p className="mt-4 text-[#78716c] max-w-3xl mx-auto leading-7 text-base sm:text-lg">
+          Select a category and explore my comprehensive technical capabilities through an interactive developer keyboard console.
         </p>
       </div>
 
@@ -53,7 +52,7 @@ const SkillKeyboard = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="rounded-[32px] border border-white/10 bg-[#080b14]/90 backdrop-blur-xl p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
+          className="rounded-[32px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
         >
           <h3 className="text-white text-2xl font-black mb-2">
             Skill Categories
@@ -108,7 +107,7 @@ const SkillKeyboard = () => {
           initial={{ opacity: 0, x: 35, rotateX: 12 }}
           animate={{ opacity: 1, x: 0, rotateX: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
-          className="relative rounded-[36px] border border-white/10 bg-[#080b14]/90 backdrop-blur-xl p-5 sm:p-8 shadow-[0_35px_100px_rgba(0,0,0,0.45)]"
+          className="relative rounded-[36px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 sm:p-8 shadow-[0_35px_100px_rgba(0,0,0,0.35)]"
         >
           <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-[#c19d23]/10 via-transparent to-cyan-500/10 pointer-events-none" />
 

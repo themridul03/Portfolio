@@ -23,7 +23,7 @@ const ExperienceCard = ({ exp, index }) => (
   >
     <div className="absolute inset-0 rounded-[28px] bg-[#c19d23]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-    <div className="relative rounded-[28px] bg-[#080b14]/95 backdrop-blur-2xl p-6 sm:p-9 border border-white/10">
+    <div className="relative rounded-[28px] bg-[#0d0f14] backdrop-blur-2xl p-6 sm:p-9 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
       
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
@@ -95,8 +95,8 @@ const Experience = () => {
   return (
     <div id="experience" className="relative pt-6">
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#c19d23] text-xs sm:text-sm font-semibold mb-4">
-          <RiBriefcase4Fill />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
+          <RiBriefcase4Fill className="text-[#f59e0b]" />
           Career Progression
         </div>
 
@@ -104,7 +104,7 @@ const Experience = () => {
           Work Experience.
         </h2>
 
-        <p className="mt-4 text-secondary text-[16px] sm:text-[18px] leading-relaxed">
+        <p className="mt-4 text-[#78716c] text-[16px] sm:text-[18px] leading-relaxed">
           2.5+ years of software development experience contributing across cloud-native architectures, enterprise SaaS pipelines, and full-stack solutions.
         </p>
       </div>

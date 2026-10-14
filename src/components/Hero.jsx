@@ -251,16 +251,42 @@ const Hero = () => {
           <div className="relative z-10 w-[310px] sm:w-[380px] md:w-[420px] rounded-[38px] p-2.5 bg-gradient-to-b from-[#1c1f26] via-[#0d0f14] to-[#050608] shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-black/80">
             <div className="relative rounded-[32px] overflow-hidden bg-[#090a0f] border border-white/10">
               
-              {/* Developer Studio Portrait with MacBook */}
+              {/* Developer Studio Portrait & 3D Avatar */}
               <div className="relative h-[400px] sm:h-[480px] w-full overflow-hidden bg-gradient-to-b from-[#181b22] to-[#07080c]">
+                
+                {/* Toggle: Real Studio Photo vs 3D Avatar */}
+                <div className="absolute top-3.5 right-3.5 z-30 flex items-center p-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 shadow-lg">
+                  <button
+                    onClick={() => setView3D(false)}
+                    className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+                      !view3D
+                        ? "bg-[#c19d23] text-black shadow-sm"
+                        : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    📸 Real Photo
+                  </button>
+                  <button
+                    onClick={() => setView3D(true)}
+                    className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+                      view3D
+                        ? "bg-[#c19d23] text-black shadow-sm"
+                        : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    🤖 3D Avatar
+                  </button>
+                </div>
+
                 <img
-                  src={personalInfo.photo}
+                  key={view3D ? "3d" : "photo"}
+                  src={view3D && personalInfo.photo3d ? personalInfo.photo3d : personalInfo.photo}
                   alt={personalInfo.name}
                   className="w-full h-full object-cover object-top scale-105 hover:scale-110 transition-transform duration-700"
                 />
 
                 {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/25 to-transparent pointer-events-none" />
                 
                 {/* Name & Title Bar */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/15">
