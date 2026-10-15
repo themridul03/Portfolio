@@ -1,220 +1,325 @@
-import { motion } from "framer-motion";
 import React, { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SKILLS, SKILL_CATEGORIES } from "../constants/skills";
+import SyntaxCVSectionLayout from "./SyntaxCVSectionLayout";
+
+const CATEGORIES = [
+  { id: "all", label: "All Skills" },
+  { id: "backend", label: "Backend & .NET" },
+  { id: "frontend", label: "Frontend & UI" },
+  { id: "mobile", label: "Mobile" },
+  { id: "database", label: "Databases & ORM" },
+  { id: "cloud", label: "Cloud & DevOps" },
+  { id: "automation", label: "AI & Automation" },
+  { id: "tools", label: "Tools" },
+];
+
+const TICKER_ITEMS = [
+  "ASP.NET CORE",
+  "C#",
+  "MICROSERVICES",
+  "REACT.JS",
+  "TYPESCRIPT",
+  "AZURE CLOUD",
+  "DOCKER",
+  "SQL SERVER",
+  "POSTGRESQL",
+  "REDIS CACHING",
+  "FASTAPI",
+  "PYTHON",
+  "REST APIS",
+  "REACT NATIVE",
+  "ENTITY FRAMEWORK",
+  "TAILWIND CSS",
+  "DISTRIBUTED SYSTEMS",
+];
+
+const InfiniteTicker = () => {
+  return (
+    <div className="relative w-full overflow-hidden py-3 border-y border-white/[0.08] bg-white/[0.01] select-none my-2">
+      <div className="absolute left-0 inset-y-0 w-12 bg-gradient-to-r from-[#000000] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 inset-y-0 w-12 bg-gradient-to-l from-[#000000] to-transparent z-10 pointer-events-none" />
+
+      <motion.div
+        className="flex items-center gap-8 whitespace-nowrap will-change-transform"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          ease: "linear",
+          duration: 34,
+        }}
+      >
+        {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+          <div key={`ticker-${i}`} className="flex items-center gap-8">
+            <span className="font-mono text-sm sm:text-base md:text-lg font-bold tracking-widest text-neutral-200 hover:text-[#00ffae] transition-colors cursor-default">
+              {item}
+            </span>
+            <span className="text-[#00ffae] text-sm">✦</span>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 const SkillKeyboard = () => {
-  const [activeCategory, setActiveCategory] = useState("frontend");
+  const [activeTab, setActiveTab] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
-  const categorySkills = useMemo(() => {
-    return SKILL_CATEGORIES[activeCategory].skills
-      .map((key) => SKILLS[key])
-      .filter(Boolean);
-  }, [activeCategory]);
+  // Map category to skill for quick lookup
+  const skillCategoryMap = useMemo(() => {
+    const map = {};
+    Object.entries(SKILL_CATEGORIES).forEach(([catKey, catVal]) => {
+      catVal.skills.forEach((skillKey) => {
+        map[skillKey] = catVal.title;
+      });
+    });
+    return map;
+  }, []);
 
-  const [activeSkill, setActiveSkill] = useState(categorySkills[0]);
+  // Filter skills based on Category Tab and Search Query
+  const displayedSkills = useMemo(() => {
+    let list = Object.values(SKILLS);
 
-  const changeCategory = (key) => {
-    setActiveCategory(key);
+    if (activeTab !== "all") {
+      const cat = SKILL_CATEGORIES[activeTab];
+      if (cat) {
+        const keySet = new Set(cat.skills);
+        list = list.filter((s) => keySet.has(s.name));
+      }
+    }
 
-    const firstSkill = SKILL_CATEGORIES[key].skills
-      .map((skillKey) => SKILLS[skillKey])
-      .filter(Boolean)[0];
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (s) =>
+          (s.label && s.label.toLowerCase().includes(q)) ||
+          (s.name && s.name.toLowerCase().includes(q)) ||
+          (s.shortDescription && s.shortDescription.toLowerCase().includes(q))
+      );
+    }
 
-    setActiveSkill(firstSkill);
-  };
+    return list;
+  }, [activeTab, searchQuery]);
+
+  const activeDisplaySkill = hoveredSkill || selectedSkill;
 
   return (
-    <section
-      id="skills"
-      className="relative min-h-screen w-full overflow-hidden px-4 py-20"
-    >
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-[#c19d23]/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-0 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[480px] h-[480px] bg-purple-500/10 rounded-full blur-[150px]" />
+    <SyntaxCVSectionLayout id="skills" number="03." title="skills">
+      <div className="space-y-6">
+        {/* ── KINETIC RUNNING MARQUEE TICKER ── */}
+        <InfiniteTicker />
 
-      <div className="relative z-10 text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
-          Tech Stack &amp; Tools
-        </div>
+        {/* ── SEARCH & CATEGORY FILTER TABS (TEXT-FIRST, ZERO ICONS) ── */}
+        <div className="space-y-3 pt-1">
+          {/* Minimal Quick Search Input */}
+          <div className="relative">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#00ffae] font-mono text-sm pointer-events-none select-none">
+              &gt;
+            </span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Filter skills (e.g. C#, ASP.NET, React, Azure, Docker, SQL Server)..."
+              className="w-full bg-[#111111] border border-white/[0.12] rounded-xl pl-8 pr-10 py-2.5 text-xs sm:text-sm font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-[#00ffae] focus:ring-1 focus:ring-[#00ffae] transition"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-xs font-mono"
+                aria-label="Clear filter"
+              >
+                ✕
+              </button>
+            )}
+          </div>
 
-        <h2 className="text-[#121418] font-black text-[42px] sm:text-[58px] lg:text-[72px] tracking-tight leading-tight">
-          Skills Keyboard.
-        </h2>
-
-        <p className="mt-4 text-[#78716c] max-w-3xl mx-auto leading-7 text-base sm:text-lg">
-          Select a category and explore my comprehensive technical capabilities through an interactive developer keyboard console.
-        </p>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8">
-        <motion.div
-          initial={{ opacity: 0, x: -35 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="rounded-[32px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
-        >
-          <h3 className="text-white text-2xl font-black mb-2">
-            Skill Categories
-          </h3>
-
-          <p className="text-secondary text-sm leading-6 mb-6">
-            Click any category to change the keyboard.
-          </p>
-
-          <div className="flex flex-col gap-3">
-            {Object.entries(SKILL_CATEGORIES).map(([key, category]) => {
-              const Icon = category.icon;
-              const isActive = activeCategory === key;
+          {/* Category Tabs with Animated Indicator (Pure text, no icons) */}
+          <div className="flex flex-wrap gap-2 pt-1">
+            {CATEGORIES.map((cat) => {
+              const isActive = activeTab === cat.id;
+              const count =
+                cat.id === "all"
+                  ? Object.keys(SKILLS).length
+                  : SKILL_CATEGORIES[cat.id]?.skills.length || 0;
 
               return (
                 <button
-                  key={key}
-                  onClick={() => changeCategory(key)}
-                  data-cursor="OPEN"
-                  className={`cursor-can-hover group relative overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
+                  key={cat.id}
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`relative px-4 py-2 sm:px-4.5 sm:py-2 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-2 select-none font-semibold ${
                     isActive
-                      ? "border-[#c19d23]/80 bg-[#c19d23]/15 shadow-[0_0_35px_rgba(193,157,35,0.18)]"
-                      : "border-white/10 bg-white/[0.035] hover:border-[#c19d23]/50 hover:bg-[#c19d23]/10"
+                      ? "bg-[#00ffae] text-black font-bold shadow-[0_0_15px_rgba(0,255,174,0.3)]"
+                      : "border border-white/10 text-[#949494] hover:text-white hover:border-white/30 bg-white/[0.02]"
                   }`}
                 >
-                  <div className="relative z-10 flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition ${
-                        isActive
-                          ? "border-[#c19d23]/70 bg-[#c19d23]/20 text-[#f7df8a]"
-                          : "border-white/10 bg-black/25 text-white"
-                      }`}
-                    >
-                      <Icon size={23} />
-                    </div>
-
-                    <div>
-                      <p className="text-white font-black">{category.title}</p>
-                      <p className="text-secondary text-xs mt-1">
-                        {category.skills.length} Skills
-                      </p>
-                    </div>
-                  </div>
+                  <span>{cat.label}</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded-full text-[10px] sm:text-xs ${
+                      isActive
+                        ? "bg-black/20 text-black font-bold"
+                        : "bg-white/10 text-neutral-400"
+                    }`}
+                  >
+                    {count}
+                  </span>
                 </button>
               );
             })}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, x: 35, rotateX: 12 }}
-          animate={{ opacity: 1, x: 0, rotateX: 0 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="relative rounded-[36px] border border-white/10 bg-[#0d0f14] backdrop-blur-xl p-5 sm:p-8 shadow-[0_35px_100px_rgba(0,0,0,0.35)]"
-        >
-          <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-[#c19d23]/10 via-transparent to-cyan-500/10 pointer-events-none" />
+        {/* ── SKILLS PILLS GRID (LARGE TACTILE TYPOGRAPHY WITH HOVER TOOLTIP & SPRING ANIMATIONS) ── */}
+        <motion.div layout className="flex flex-wrap gap-3 sm:gap-3.5 relative">
+          <AnimatePresence>
+            {displayedSkills.map((skill, index) => {
+              const isHovered = hoveredSkill?.name === skill.name;
+              const isSelected = selectedSkill?.name === skill.name;
+              const catName = skillCategoryMap[skill.name] || "Software Engineering";
 
-          <div className="relative z-10 mb-8 rounded-[28px] border border-white/10 bg-black/30 p-6 flex flex-col sm:flex-row items-center gap-5">
-            <div
-              className="w-20 h-20 rounded-3xl flex items-center justify-center border shadow-[0_0_35px_rgba(193,157,35,0.25)]"
-              style={{
-                borderColor: activeSkill?.color || "#c19d23",
-                background: `${activeSkill?.color || "#c19d23"}18`,
-              }}
-            >
-              <img
-                src={activeSkill?.icon}
-                alt={activeSkill?.label}
-                className="w-11 h-11 object-contain"
-              />
-            </div>
-
-            <div className="text-center sm:text-left">
-              <p className="text-[#c19d23] text-xs font-bold tracking-[3px] uppercase">
-                {SKILL_CATEGORIES[activeCategory].title}
-              </p>
-
-              <h3 className="text-white text-[28px] font-black">
-                {activeSkill?.label}
-              </h3>
-
-              <p className="mt-2 text-secondary max-w-3xl leading-7">
-                {activeSkill?.shortDescription}
-              </p>
-            </div>
-          </div>
-
-          <div className="relative z-10 rounded-[30px] border border-white/10 bg-black/35 p-4 sm:p-6">
-            <div className="mb-5 flex items-center justify-between">
-              <div>
-                <p className="text-white font-black text-xl">
-                  {SKILL_CATEGORIES[activeCategory].title} Keyboard
-                </p>
-                <p className="text-secondary text-sm mt-1">
-                  Hover or click any key
-                </p>
-              </div>
-
-              <div className="hidden sm:block px-4 py-2 rounded-full border border-[#c19d23]/30 bg-[#c19d23]/10 text-[#f7df8a] text-xs font-bold">
-                {categorySkills.length} KEYS
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
-              {categorySkills.map((skill, index) => (
-                <motion.button
+              return (
+                <motion.div
                   key={skill.name}
-                  initial={{ opacity: 0, y: 25, scale: 0.88 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  layout
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
                   transition={{
-                    delay: index * 0.035,
-                    duration: 0.45,
-                    type: "spring",
+                    duration: 0.22,
+                    delay: Math.min(index * 0.015, 0.2),
                   }}
-                  whileHover={{
-                    y: -10,
-                    scale: 1.08,
-                    rotateX: 10,
-                  }}
-                  whileTap={{ scale: 0.92 }}
-                  onMouseEnter={() => setActiveSkill(skill)}
-                  onClick={() => setActiveSkill(skill)}
-                  data-cursor="SKILL"
-                  className="cursor-can-hover group relative min-h-[112px] rounded-2xl border border-white/10 bg-[#101522] p-3 flex flex-col items-center justify-center gap-3 overflow-hidden transition-all duration-300 hover:border-[#c19d23]/70 hover:shadow-[0_18px_45px_rgba(193,157,35,0.2)]"
+                  className="relative"
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                  onMouseLeave={() => setHoveredSkill(null)}
                 >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300"
-                    style={{
-                      background: `radial-gradient(circle at top, ${skill.color}33, transparent 68%)`,
-                    }}
-                  />
-
-                  <div
-                    className="relative w-12 h-12 rounded-2xl flex items-center justify-center border border-white/10 bg-white/[0.04] group-hover:scale-110 transition duration-300"
-                    style={{
-                      boxShadow: `0 0 25px ${skill.color}35`,
-                    }}
+                  <motion.button
+                    whileHover={{ y: -3, scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => setSelectedSkill(isSelected ? null : skill)}
+                    className={`px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl border font-mono text-sm sm:text-base font-semibold transition-all duration-200 select-none flex items-center gap-2.5 ${
+                      isHovered || isSelected
+                        ? "border-[#00ffae] border-b-2 border-b-[#00ffae] text-[#00ffae] bg-[#00ffae]/10 shadow-[0_0_22px_rgba(0,255,174,0.35)] scale-[1.02]"
+                        : "border-white/[0.14] border-b-2 border-b-white/[0.24] text-neutral-200 bg-white/[0.02] hover:border-[#00ffae] hover:border-b-[#00ffae] hover:text-[#00ffae]"
+                    }`}
                   >
-                    <img
-                      src={skill.icon}
-                      alt={skill.label}
-                      className="w-8 h-8 object-contain"
-                    />
-                  </div>
+                    {isHovered && (
+                      <span className="w-2 h-2 rounded-full bg-[#00ffae] animate-pulse" />
+                    )}
+                    <span>{skill.label || skill.name}</span>
+                  </motion.button>
 
-                  <span className="relative text-white text-[11px] sm:text-[13px] font-bold leading-tight text-center">
-                    {skill.label}
-                  </span>
+                  {/* Individual On-Hover Floating Tooltip */}
+                  <AnimatePresence>
+                    {isHovered && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: -4, scale: 1 }}
+                        exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                        transition={{ duration: 0.16 }}
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-60 sm:w-64 p-3 rounded-xl bg-[#0c0c0c] border border-[#00ffae]/50 shadow-[0_12px_35px_rgba(0,0,0,0.9)] backdrop-blur-xl pointer-events-none z-40 text-left"
+                      >
+                        <div className="flex items-center justify-between border-b border-white/10 pb-1.5 mb-1.5">
+                          <span className="font-bold text-xs font-mono text-white">
+                            {skill.label || skill.name}
+                          </span>
+                          <span className="text-[10px] font-mono text-[#00ffae] uppercase tracking-wider bg-[#00ffae]/10 px-1.5 py-0.5 rounded">
+                            {catName}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-neutral-300 font-sans leading-relaxed">
+                          {skill.shortDescription ||
+                            "Core production competence applied in scalable enterprise architectures and high-throughput systems."}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
-                  <span className="absolute top-2 right-2 text-[10px] text-white/25 font-black">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </motion.button>
-              ))}
+          {displayedSkills.length === 0 && (
+            <div className="w-full py-8 text-center text-xs font-mono text-neutral-500">
+              No skills found matching &ldquo;{searchQuery}&rdquo;. Try another filter.
             </div>
-          </div>
+          )}
         </motion.div>
-      </div>
 
-      <span id="projects"></span>
-    </section>
+        {/* ── PERSISTENT SYNTAX CV LIVE ARCHITECTURE INSPECTOR (HUD) ── */}
+        <div className="mt-6 p-4 sm:p-5 rounded-xl border border-white/[0.12] border-b-2 border-b-[#00ffae]/50 bg-[#0d0d0d] shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+          <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5 mb-3 text-xs font-mono text-[#949494]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#00ffae] animate-pulse" />
+              <span className="uppercase tracking-widest text-[#00ffae] font-bold">
+                Architecture Inspector
+              </span>
+            </div>
+            <span className="text-[11px] text-neutral-500 font-mono">
+              {activeDisplaySkill ? "STATUS: ACTIVE" : "STATUS: HOVER SKILL TO INSPECT"}
+            </span>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {activeDisplaySkill ? (
+              <motion.div
+                key={activeDisplaySkill.name}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-bold font-mono text-white">
+                      {activeDisplaySkill.label || activeDisplaySkill.name}
+                    </h4>
+                    <span className="px-2.5 py-1 rounded text-xs font-mono bg-[#00ffae]/15 text-[#00ffae] border border-[#00ffae]/30 uppercase font-bold">
+                      {skillCategoryMap[activeDisplaySkill.name] || "Production Core"}
+                    </span>
+                    <span className="text-xs font-mono text-neutral-400">
+                      Enterprise Production Tier
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-base text-[#e5e5e5] mt-2 max-w-3xl leading-relaxed font-sans">
+                    {activeDisplaySkill.shortDescription ||
+                      "Production competence deployed in live systems, high-throughput backend services, and interactive UIs."}
+                  </p>
+                </div>
+
+                {selectedSkill && (
+                  <button
+                    onClick={() => setSelectedSkill(null)}
+                    className="text-xs font-mono text-[#949494] hover:text-[#00ffae] transition self-start sm:self-center shrink-0 border border-white/10 px-2.5 py-1 rounded"
+                  >
+                    Clear Pin
+                  </button>
+                )}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="idle-prompt"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-neutral-400 py-1"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00ffae]">&gt;</span>
+                  <span>Hover over any skill above to inspect production role & architecture.</span>
+                </div>
+                <span className="text-[11px] text-neutral-500">
+                  60+ Core Technologies • Enterprise &amp; Cloud Native
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </SyntaxCVSectionLayout>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   greencross,
   prachini,
   mridul,
+  mridulNoir,
   developer3d,
   karto3d,
   malariadetectionsystem,
@@ -37,7 +38,8 @@ import {
 } from "../assets";
 
 export const personalInfo = {
-  name: "Mridul Mohan Mishra",
+  name: "Mridul Mishra",
+  fullName: "Mridul Mohan Mishra",
   shortName: "Mridul",
   role: "Software Developer",
   subRole: "Full-Stack • .NET • MERN • React Native • Azure",
@@ -47,12 +49,16 @@ export const personalInfo = {
   phone: "+91-8418069880",
   whatsapp: "+918418069880",
   github: "https://github.com/themridul03",
+  linkedin: "https://www.linkedin.com/in/mahii7781/",
   portfolio: "https://portfolio-mahiiiii7781s-projects.vercel.app",
   kartoUrl: "https://karto.online",
   kartoPlayStore: "https://play.google.com/store/apps",
   resumeLink: "https://drive.google.com/file/d/1JXxclNaQDOGD9BauEy1jS9XDYk5QsaMa/view?usp=sharing",
   photo: mridul,
+  photoNoir: mridulNoir,
   photo3d: developer3d,
+  firstName: "MRIDUL",
+  lastName: "MISHRA",
 };
 
 export const navLinks = [

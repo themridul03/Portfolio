@@ -141,7 +141,7 @@ const ProjectModal = ({
               type: "spring",
               damping: 26,
             }}
-            className="relative bg-[#0d0f14] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl top-12 hide-scroll border border-white/10"
+            className="relative bg-[#111111] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl top-12 hide-scroll border border-white/[0.08]"
             style={{
               boxShadow:
                 "0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(139, 92, 246, 0.08)",
@@ -237,7 +237,7 @@ const ProjectModal = ({
                 className="w-full h-full object-contain md:object-cover"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f14] via-[#0d0f14]/20 to-transparent opacity-90 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/20 to-transparent opacity-90 pointer-events-none"></div>
 
               {/* Image Carousel Controls (if multiple images) */}
               {images.length > 1 && (
@@ -489,7 +489,7 @@ const ProjectModal = ({
                     onClick={() =>
                       window.open(project.play_store_link, "_blank")
                     }
-                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3.5 bg-[#00ffae] hover:bg-[#00ffae]/90 text-black font-mono font-bold text-sm rounded-xl transition-all duration-200 shadow-[0_0_20px_rgba(0,255,174,0.3)] hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Google Play
                   </button>
@@ -501,7 +501,7 @@ const ProjectModal = ({
                     onClick={() =>
                       window.open(project.live_demo_link, "_blank")
                     }
-                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3.5 bg-[#111111] hover:bg-[#00ffae]/10 border border-[#00ffae]/40 text-[#00ffae] font-mono font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <svg
                       className="w-5 h-5"
@@ -524,7 +524,7 @@ const ProjectModal = ({
                   onClick={() =>
                     window.open(project.source_code_link, "_blank")
                   }
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex-1 flex items-center justify-center gap-3 px-6 py-3.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-mono font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <img src={github} alt="github" className="w-6 h-6" />
                   Source Code

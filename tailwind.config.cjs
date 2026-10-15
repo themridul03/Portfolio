@@ -5,18 +5,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#f4efe6",
-        secondary: "#6b7280",
-        tertiary: "#0d0f14",
-        "black-100": "#121418",
-        "black-200": "#080a0f",
+        primary: "#0a0a0a",
+        secondary: "#949494",
+        tertiary: "#111111",
+        neon: "#00ffae",
+        "neon-glow": "rgba(0, 255, 174, 0.15)",
+        "black-100": "#141414",
+        "black-200": "#050505",
         "white-100": "#ffffff",
       },
       boxShadow: {
-        card: "0px 35px 90px -15px rgba(0, 0, 0, 0.4)",
+        neon: "0 0 25px rgba(0, 255, 174, 0.35)",
+        card: "0 20px 60px rgba(0, 0, 0, 0.6)",
       },
       screens: {
         xs: "450px",
+      },
+      fontFamily: {
+        sans: ["Switzer", "Inter", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["JetBrains Mono", "SF Mono", "Fira Code", "monospace"],
       },
     },
   },

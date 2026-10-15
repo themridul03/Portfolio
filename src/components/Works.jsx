@@ -1,31 +1,21 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useMemo } from "react";
-import { Tilt } from "react-tilt";
 import {
-  RiExternalLinkLine,
+  RiArrowRightUpLine,
   RiGithubFill,
   RiGooglePlayFill,
-  RiStarFill,
-  RiFilter3Line,
-  RiRocketFill,
-  RiSparkling2Fill,
+  RiArrowRightLine,
 } from "react-icons/ri";
 
-import { github } from "../assets";
 import { projects } from "../constants";
-import { SectionWrapper } from "../hoc";
-import useCardIntent from "../reactbits/hooks/useCardIntent";
-import useParallax from "../reactbits/hooks/useParallax";
-import { styles } from "../styles";
-import { fadeIn, textVariant } from "../utils/motion";
-import useMediaQuery from "../utils/useMediaQuery";
 import ProjectModal from "./ProjectModal";
+import SyntaxCVSectionLayout from "./SyntaxCVSectionLayout";
 
 const CATEGORIES = [
   { id: "all", label: "All Projects", count: projects.length },
   {
     id: "major",
-    label: "Major & Flagship",
+    label: "Flagship & Core",
     count: projects.filter((p) => p.isMajor || p.category === "major").length,
   },
   {
@@ -45,230 +35,133 @@ const CATEGORIES = [
   },
 ];
 
-/* =========================
-   PROJECT CARD
-========================= */
-const ProjectCard = ({
-  project,
-  index,
-  onOpenModal,
-}) => {
-  const {
-    name,
-    image,
-    source_code_link,
-    live_demo_link,
-    play_store_link,
-    tags,
-    tagline,
-    subCategory,
-    isMajor,
-    metrics,
-  } = project;
-
-  const { hoverDepth, previewReady, handlers } = useCardIntent({
-    id: `project-${index}`,
-    hoverDelay: 140,
-  });
-
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const { style: parallaxStyle } = useParallax({ enabled: !isMobile });
-
-  const motionState = useMemo(
-    () => ({
-      y: previewReady ? -8 - hoverDepth * 4 : 0,
-      scale: 1 + hoverDepth * 0.007,
-    }),
-    [previewReady, hoverDepth]
-  );
+const LuxuryFlipImage = ({ project, onOpenModal }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 25 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4 }}
-      className="w-full md:w-[calc(50%-16px)] xl:w-[calc(50%-20px)]"
+    <div
+      className="relative h-36 sm:h-40 w-full mb-3.5 cursor-pointer select-none group"
+      style={{ perspective: "1200px" }}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
     >
-      <Tilt
-        options={{
-          max: 8,
-          scale: 1,
-          speed: 400,
-          glare: true,
-          "max-glare": 0.1,
-        }}
+      <motion.div
+        className="w-full h-full relative"
+        style={{ transformStyle: "preserve-3d" }}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
       >
-        <motion.div
-          {...handlers}
-          animate={motionState}
-          transition={{
-            duration: 0.22,
-            type: "spring",
-            stiffness: 240,
-            damping: 22,
-          }}
-          className={`cursor-can-hover relative h-[420px] rounded-[30px] overflow-hidden cursor-pointer group bg-[#0d0f14] border transition-all duration-500 shadow-[0_10px_35px_rgba(0,0,0,0.35)] ${
-            isMajor
-              ? "border-[#f59e0b]/50 shadow-[0_15px_60px_rgba(245,158,11,0.15)]"
-              : "border-white/[0.08] hover:border-[#c19d23]/50"
-          }`}
-          data-cursor="VIEW"
-          onClick={() => onOpenModal(previewReady)}
+        {/* ── FRONT FACE (Luxury Visual Presentation) ── */}
+        <div
+          className="absolute inset-0 w-full h-full rounded-xl overflow-hidden border border-white/15 group-hover:border-[#00ffae]/60 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-300 bg-[#090909]"
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         >
-          {/* Ambient Glow */}
-          <div
-            className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 z-10 ${
-              isMajor
-                ? "bg-gradient-to-br from-[#f59e0b]/15 via-transparent to-cyan-500/10"
-                : "bg-gradient-to-br from-[#c19d23]/10 via-transparent to-cyan-500/10"
-            }`}
+          {/* Main Visual */}
+          <img
+            src={project.image}
+            alt={project.name}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 filter contrast-110 brightness-95"
+            loading="lazy"
           />
 
-          {/* Top highlight bar */}
-          <div
-            className={`absolute top-0 left-0 right-0 h-[2px] z-20 ${
-              isMajor
-                ? "bg-gradient-to-r from-transparent via-[#f59e0b] to-transparent opacity-80"
-                : "bg-gradient-to-r from-transparent via-[#c19d23] to-transparent opacity-40"
-            }`}
-          />
+          {/* Luxury Sheen & Vignette Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
-          {/* Top Row: Index Badge & Major Tag */}
-          <div className="absolute top-5 left-5 z-30 flex items-center gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/15 flex items-center justify-center group-hover:border-[#c19d23]/70 transition">
-              <span className="text-white font-black text-xs">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
+          {/* Top Badges */}
+          <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between gap-2 pointer-events-none">
+            <span className="px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-[9px] font-mono text-neutral-300 border border-white/15 uppercase tracking-wider">
+              {project.subCategory || project.category || "Full-Stack"}
+            </span>
 
-            {isMajor && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#f59e0b]/20 border border-[#f59e0b]/60 text-[#fbbf24] text-[11px] font-extrabold uppercase tracking-wide backdrop-blur-md">
-                <RiStarFill size={12} />
-                Major Project
+            {project.isMajor && (
+              <span className="px-2 py-0.5 rounded-full bg-[#00ffae] text-black text-[9px] font-mono font-bold shadow-[0_0_12px_rgba(0,255,174,0.6)] uppercase tracking-wider">
+                ✦ Flagship
               </span>
             )}
           </div>
 
-          {/* Top Right Quick Actions */}
-          <div className="absolute top-5 right-5 z-30 flex items-center gap-2">
-            {play_store_link && (
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(play_store_link, "_blank");
-                }}
-                className="w-10 h-10 rounded-2xl bg-emerald-500/20 backdrop-blur-xl border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/30 flex items-center justify-center transition"
-                title="Google Play Store"
-              >
-                <RiGooglePlayFill size={17} />
-              </motion.button>
-            )}
+          {/* Bottom Flip Indicator */}
+          <div className="absolute bottom-2 inset-x-2.5 flex items-center justify-between pointer-events-none">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/80 backdrop-blur-md text-[9px] font-mono text-[#00ffae] border border-[#00ffae]/30">
+              <span className="text-[10px]">↻</span>
+              <span>Flip Blueprint</span>
+            </span>
 
-            {live_demo_link && (
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(live_demo_link, "_blank");
-                }}
-                className="w-10 h-10 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/15 hover:border-[#c19d23]/70 text-[#f7df8a] flex items-center justify-center transition"
-                title="Live Website"
-              >
-                <RiExternalLinkLine size={16} />
-              </motion.button>
-            )}
-
-            {source_code_link && (
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(source_code_link, "_blank");
-                }}
-                className="w-10 h-10 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/15 hover:border-[#c19d23]/70 flex items-center justify-center transition"
-                title="GitHub Source"
-              >
-                <img src={github} alt="github" className="w-5 h-5 opacity-80" />
-              </motion.button>
-            )}
-          </div>
-
-          {/* PROJECT PREVIEW IMAGE */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden">
-            <motion.img
-              src={image}
-              alt={name}
-              className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700"
-              style={{
-                filter: "brightness(0.78) saturate(1.1) contrast(1.05)",
-                ...parallaxStyle,
-              }}
-            />
-            {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/60 to-black/25" />
-          </div>
-
-          {/* BOTTOM TEXT & DETAILS */}
-          <div className="absolute inset-x-0 bottom-0 z-30 p-6 flex flex-col justify-end">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-secondary text-xs uppercase tracking-[2px] font-bold">
-                {subCategory || "Full-Stack Project"}
+            {project.metrics?.stars && (
+              <span className="text-[9px] font-mono text-neutral-400 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded">
+                ★ {project.metrics.stars}
               </span>
-            </div>
+            )}
+          </div>
+        </div>
 
-            <h3 className="text-white font-black text-[22px] sm:text-[24px] leading-tight group-hover:text-[#f7df8a] transition">
-              {name}
-            </h3>
+        {/* ── BACK FACE (Luxury Obsidian Architecture & Blueprint Deck) ── */}
+        <div
+          className="absolute inset-0 w-full h-full rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border border-[#00ffae]/50 shadow-[0_0_30px_rgba(0,255,174,0.15)] text-left"
+          style={{
+            backgroundColor: "#0a0a0a",
+            backgroundImage: "radial-gradient(rgba(0, 255, 174, 0.12) 1px, transparent 1px)",
+            backgroundSize: "14px 14px",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+            <span className="text-[9px] font-mono uppercase tracking-widest text-[#00ffae] flex items-center gap-1 font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ffae] animate-pulse" />
+              Technical Blueprint
+            </span>
+            <span className="text-[9px] font-mono text-neutral-400">
+              {project.metrics?.users || "Verified"}
+            </span>
+          </div>
 
-            <p className="mt-2 text-white/70 text-[13px] line-clamp-2 leading-relaxed">
-              {tagline || project.description}
+          {/* Core Feature Bullet */}
+          <div className="my-auto py-0.5">
+            <p className="text-[11px] text-neutral-200 line-clamp-2 leading-snug font-sans">
+              {project.features?.[0] || project.tagline || project.description}
             </p>
 
-            {/* Tags preview */}
-            <div className="mt-3.5 flex flex-wrap gap-1.5">
-              {tags?.slice(0, 4).map((tag) => (
+            {/* Core Stack Pills */}
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {project.tags?.slice(0, 3).map((t) => (
                 <span
-                  key={tag.name}
-                  className="px-2.5 py-1 rounded-lg bg-black/40 border border-white/10 text-white/80 text-[11px] font-medium"
+                  key={t.name}
+                  className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-[9px] font-mono text-[#00ffae]"
                 >
-                  #{tag.name}
+                  #{t.name}
                 </span>
               ))}
-              {tags?.length > 4 && (
-                <span className="px-2 py-1 rounded-lg bg-black/40 border border-white/10 text-white/50 text-[11px]">
-                  +{tags.length - 4} more
-                </span>
-              )}
-            </div>
-
-            {/* Click explore hint */}
-            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-              <span className="text-[#f7df8a] text-xs font-bold inline-flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                <span>View Full Case Study &amp; Features</span>
-                <span>→</span>
-              </span>
-              {metrics?.views && (
-                <span className="text-white/40 text-[11px] font-mono">
-                  {metrics.views} views
-                </span>
-              )}
             </div>
           </div>
-        </motion.div>
-      </Tilt>
-    </motion.div>
+
+          {/* Bottom Flip CTA */}
+          <div className="pt-1.5 border-t border-white/10 flex items-center justify-between">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenModal(project);
+              }}
+              className="text-[10px] font-mono text-[#00ffae] hover:underline font-bold flex items-center gap-1"
+            >
+              <span>Full Case Study</span>
+              <RiArrowRightUpLine size={12} />
+            </button>
+
+            <span className="text-[9px] font-mono text-neutral-500">
+              ↺ Flip
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
-/* =========================
-   WORKS SECTION
-========================= */
 const Works = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -276,7 +169,6 @@ const Works = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(-1);
   const [modalPreviewReady, setModalPreviewReady] = useState(false);
 
-  // Filter projects by category
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "all") return projects;
     if (selectedCategory === "major") {
@@ -294,11 +186,11 @@ const Works = () => {
     return projects;
   }, [selectedCategory]);
 
-  const handleOpenModal = (project, previewReady = false) => {
+  const handleOpenModal = (project) => {
     const index = projects.findIndex((p) => p.name === project.name);
     setCurrentProjectIndex(index);
     setSelectedProject(project);
-    setModalPreviewReady(previewReady);
+    setModalPreviewReady(true);
     setIsModalOpen(true);
   };
 
@@ -320,87 +212,185 @@ const Works = () => {
 
   return (
     <>
-      <div id="projects" className="relative overflow-hidden pt-8">
-        {/* Glow circles */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[580px] h-[580px] bg-[#c19d23]/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-20 right-0 w-[420px] h-[420px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none" />
+      <SyntaxCVSectionLayout
+        id="projects"
+        number="05."
+        title="featured projects"
+      >
+        <div className="space-y-8">
+          {/* Category Tabs in Syntax CV style */}
+          <div className="flex flex-wrap items-center gap-2">
+            {CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
 
-        {/* Header */}
-        <motion.div variants={textVariant()} className="relative z-10 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
-            <RiSparkling2Fill className="text-[#f59e0b]" />
-            Production &amp; GitHub Portfolio
-          </div>
-
-          <h2 className={styles.sectionHeadText}>
-            Featured Projects.
-          </h2>
-
-          <p className="mt-4 text-[#78716c] text-[16px] sm:text-[18px] leading-relaxed">
-            A comprehensive showcase of all enterprise platforms, mobile applications, and open-source GitHub repositories engineered by Mridul Mohan Mishra.
-          </p>
-        </motion.div>
-
-        {/* CATEGORY FILTER TABS */}
-        <div className="relative z-10 mt-10 flex flex-wrap justify-center items-center gap-2.5 sm:gap-3">
-          {CATEGORIES.map((cat) => {
-            const isSelected = selectedCategory === cat.id;
-
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 ${
-                  isSelected
-                    ? "bg-[#0d0f14] text-white shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-black/20 scale-105"
-                    : "bg-white/80 text-[#44403c] border border-[#d6cfc4] hover:bg-white hover:text-black hover:border-black/30"
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span
-                  className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
-                    isSelected ? "bg-white/20 text-white" : "bg-black/5 text-[#57534e]"
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
+                    isSelected
+                      ? "bg-[#00ffae] text-black font-bold shadow-[0_0_15px_rgba(0,255,174,0.3)]"
+                      : "border border-white/10 text-[#949494] hover:text-white hover:border-white/30 bg-white/[0.02]"
                   }`}
                 >
-                  {cat.count}
-                </span>
-              </button>
-            );
-          })}
+                  <span>{cat.label}</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded-full text-[10px] ${
+                      isSelected
+                        ? "bg-black/20 text-black font-bold"
+                        : "bg-white/10 text-neutral-400"
+                    }`}
+                  >
+                    {cat.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Project List / Grid with 3D Luxury Flip Cards */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.name}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
+                  className="group rounded-2xl border border-white/[0.12] border-b-2 border-b-white/[0.2] bg-white/[0.02] hover:border-[#00ffae] hover:border-b-[#00ffae] p-4 sm:p-4.5 flex flex-col justify-between transition-all duration-300 shadow-[0_12px_35px_rgba(0,0,0,0.4)]"
+                >
+                  <div>
+                    {/* 3D LUXURY FLIP IMAGE CARD */}
+                    <LuxuryFlipImage
+                      project={project}
+                      onOpenModal={handleOpenModal}
+                    />
+
+                    {/* Metadata Subline */}
+                    <div className="flex items-center justify-between text-[11px] font-mono text-[#949494]">
+                      <span>{project.subCategory || project.category || "Full-Stack"}</span>
+                      {project.metrics?.stars ? (
+                        <span>★ {project.metrics.stars} stars</span>
+                      ) : null}
+                    </div>
+
+                    {/* Project Title */}
+                    <h4
+                      onClick={() => handleOpenModal(project)}
+                      className="text-base sm:text-lg font-bold text-white mt-1 group-hover:text-[#00ffae] transition-colors cursor-pointer"
+                    >
+                      {project.name}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="mt-1.5 text-xs text-[#949494] line-clamp-2 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Badges */}
+                    {project.tags && (
+                      <div className="mt-2.5 flex flex-wrap gap-1">
+                        {project.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag.name}
+                            className="px-2 py-0.5 rounded border border-white/[0.08] bg-white/[0.02] text-[10px] font-mono text-neutral-400"
+                          >
+                            #{tag.name}
+                          </span>
+                        ))}
+                        {project.tags.length > 3 && (
+                          <span className="text-[10px] font-mono text-neutral-500 self-center">
+                            +{project.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Action Links with Rotating 45deg Arrow */}
+                  <div className="mt-3.5 pt-2.5 border-t border-white/[0.08] flex items-center justify-between">
+                    <button
+                      onClick={() => handleOpenModal(project)}
+                      className="inline-flex items-center gap-1 text-xs font-mono text-[#00ffae] hover:underline"
+                    >
+                      <span>Case Details</span>
+                      <RiArrowRightLine size={12} />
+                    </button>
+
+                    <div className="flex items-center gap-3">
+                      {project.play_store_link && (
+                        <a
+                          href={project.play_store_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn text-[#949494] hover:text-[#00ffae] transition flex items-center gap-1 text-xs font-mono"
+                          title="Google Play"
+                        >
+                          <RiGooglePlayFill size={15} />
+                          <RiArrowRightUpLine
+                            size={12}
+                            className="group-hover/btn:rotate-45 transition-transform duration-200"
+                          />
+                        </a>
+                      )}
+
+                      {project.source_code_link && (
+                        <a
+                          href={project.source_code_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn text-[#949494] hover:text-[#00ffae] transition flex items-center gap-1 text-xs font-mono"
+                          title="Source Code"
+                        >
+                          <RiGithubFill size={15} />
+                          <RiArrowRightUpLine
+                            size={12}
+                            className="group-hover/btn:rotate-45 transition-transform duration-200"
+                          />
+                        </a>
+                      )}
+
+                      {project.live_demo_link && (
+                        <a
+                          href={project.live_demo_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn text-white hover:text-[#00ffae] transition flex items-center gap-1 text-xs font-mono font-bold"
+                          title="Live Application"
+                        >
+                          <span>Live</span>
+                          <RiArrowRightUpLine
+                            size={13}
+                            className="group-hover/btn:rotate-45 transition-transform duration-200"
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
+      </SyntaxCVSectionLayout>
 
-        {/* PROJECTS GRID */}
-        <motion.div
-          layout
-          className="relative z-10 mt-12 flex flex-wrap gap-8 justify-center"
-        >
-          <AnimatePresence>
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.name}
-                project={project}
-                index={index}
-                onOpenModal={(previewReady) =>
-                  handleOpenModal(project, previewReady)
-                }
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-
-      {/* FULL PROJECT DETAIL MODAL */}
+      {/* Deep Inspection Modal */}
       <ProjectModal
-        project={selectedProject}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        projects={projects}
-        currentIndex={currentProjectIndex}
+        project={selectedProject}
         onNavigate={handleNavigateProject}
-        previewReady={modalPreviewReady}
+        currentIndex={currentProjectIndex}
+        totalProjects={projects.length}
+        ready={modalPreviewReady}
       />
     </>
   );
 };
 
-export default SectionWrapper(Works, "projects");
+export default Works;

@@ -58,6 +58,7 @@ import mimihotels from "./project/mimihotels.svg";
 import greencross from "./project/greencross.svg";
 import prachini from "./project/prachini.svg";
 import mridul from "./mridul.png";
+import mridulNoir from "./mridul_noir.png";
 import developer3d from "./developer3d.jpg";
 import karto3d from "./karto3d.jpg";
 
@@ -117,6 +118,7 @@ export {
   greencross,
   prachini,
   mridul,
+  mridulNoir,
   developer3d,
   karto3d,
   neuralnet,

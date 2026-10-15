@@ -1,121 +1,79 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  RiBriefcase4Fill,
-  RiBuilding4Fill,
-  RiCalendarLine,
-  RiMapPin2Line,
-  RiSparkling2Fill,
-  RiCheckDoubleFill,
-} from "react-icons/ri";
-
-import { SectionWrapper } from "../hoc";
-import { styles } from "../styles";
 import { experiences } from "../constants";
-
-const ExperienceCard = ({ exp, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay: index * 0.15 }}
-    className="group relative rounded-[28px] p-[1px] bg-gradient-to-br from-[#c19d23]/40 via-white/10 to-cyan-500/20 mb-8 last:mb-0"
-  >
-    <div className="absolute inset-0 rounded-[28px] bg-[#c19d23]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-
-    <div className="relative rounded-[28px] bg-[#0d0f14] backdrop-blur-2xl p-6 sm:p-9 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-      
-      {/* Top Header Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-        <div className="flex items-start gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-[#c19d23]/15 border border-[#c19d23]/40 flex items-center justify-center text-[#f7df8a] shrink-0 group-hover:rotate-6 transition-transform">
-            <RiBuilding4Fill size={26} />
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2.5">
-              <h3 className="text-white text-xl sm:text-2xl font-black">
-                {exp.title}
-              </h3>
-              {exp.badge && (
-                <span className="px-3 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 text-xs font-bold">
-                  {exp.badge}
-                </span>
-              )}
-            </div>
-
-            <p className="text-[#f7df8a] text-sm sm:text-base font-bold mt-1">
-              {exp.company_name}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:items-end gap-1 text-xs sm:text-sm text-secondary">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-medium">
-            <RiCalendarLine className="text-[#c19d23]" />
-            {exp.date}
-          </span>
-          <span className="inline-flex items-center gap-1.5 mt-1 text-white/50 text-xs">
-            <RiMapPin2Line />
-            {exp.location}
-          </span>
-        </div>
-      </div>
-
-      {/* Bullet Points */}
-      <ul className="mt-6 space-y-3.5">
-        {exp.points.map((point, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm sm:text-[15px] text-white/80 leading-relaxed">
-            <span className="mt-1 text-[#c19d23] shrink-0">
-              <RiCheckDoubleFill size={16} />
-            </span>
-            <span>{point}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Tech Tags */}
-      {exp.tech && (
-        <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-2">
-          {exp.tech.map((t) => (
-            <span
-              key={t}
-              className="px-3 py-1 rounded-xl bg-white/[0.03] border border-white/10 text-white/70 text-xs font-medium hover:border-[#c19d23]/50 transition"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-  </motion.div>
-);
+import SyntaxCVSectionLayout from "./SyntaxCVSectionLayout";
 
 const Experience = () => {
   return (
-    <div id="experience" className="relative pt-6">
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#b45309] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4">
-          <RiBriefcase4Fill className="text-[#f59e0b]" />
-          Career Progression
-        </div>
-
-        <h2 className={styles.sectionHeadText}>
-          Work Experience.
-        </h2>
-
-        <p className="mt-4 text-[#78716c] text-[16px] sm:text-[18px] leading-relaxed">
-          2.5+ years of software development experience contributing across cloud-native architectures, enterprise SaaS pipelines, and full-stack solutions.
-        </p>
-      </div>
-
-      <div className="max-w-4xl mx-auto">
+    <SyntaxCVSectionLayout id="experience" number="02." title="experience">
+      <div className="space-y-12 sm:space-y-16">
         {experiences.map((exp, index) => (
-          <ExperienceCard key={exp.company_name} exp={exp} index={index} />
+          <motion.div
+            key={exp.company_name}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, delay: index * 0.1 }}
+            className="group relative pb-10 sm:pb-14 border-b border-white/[0.08] last:border-b-0 last:pb-0"
+          >
+            {/* Top Subline: Company + Location + Date (Syntax CV jjajws style) */}
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm font-mono text-[#949494]">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-white font-medium">{exp.company_name}</span>
+                <span>•</span>
+                <span>{exp.location}</span>
+                {exp.badge && (
+                  <>
+                    <span>•</span>
+                    <span className="px-2 py-0.5 rounded-full bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30 text-xs font-mono">
+                      {exp.badge}
+                    </span>
+                  </>
+                )}
+              </div>
+              <span className="text-white/80 font-mono text-xs sm:text-sm">
+                {exp.date}
+              </span>
+            </div>
+
+            {/* Role Title (Syntax CV cn196r style) */}
+            <h3 className="text-2xl sm:text-[30px] md:text-[32px] font-bold text-white mt-2 group-hover:text-[#00ffae] transition-colors duration-300 tracking-tight">
+              {exp.title}
+            </h3>
+
+            {/* Responsibilities & Impact Points (Syntax CV 12zfn9k style) */}
+            <ul className="mt-4 space-y-3">
+              {exp.points.map((pt, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3.5 text-base sm:text-lg text-[#d4d4d4] leading-relaxed"
+                >
+                  <span className="text-[#00ffae] mt-1.5 text-xs font-bold shrink-0">
+                    —
+                  </span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Tech Badges in Syntax CV pill style */}
+            {exp.tech && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {exp.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="px-3 py-1 rounded-md border border-white/[0.12] border-b-2 border-b-white/[0.2] bg-white/[0.02] text-xs font-mono text-[#949494] hover:text-[#00ffae] hover:border-[#00ffae] transition-colors duration-200"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </motion.div>
         ))}
       </div>
-    </div>
+    </SyntaxCVSectionLayout>
   );
 };
 
-export default SectionWrapper(Experience, "experience");
+export default Experience;
